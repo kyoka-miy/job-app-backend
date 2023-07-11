@@ -17,6 +17,7 @@ public class ApplicationRequest {
     @Nullable
     private String jobTitle;
     private LocalDate date;
+    private String country;
     @Nullable
     private String comment;
 }

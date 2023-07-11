@@ -22,6 +22,7 @@ public class Application {
     private String companyName;
     private String jobTitle;
     private LocalDate date;
+    private String country;
     private String comment;
     @Enumerated(EnumType.STRING)
     private Status status;

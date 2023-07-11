@@ -18,13 +18,14 @@ public class ApplicationService {
 
     public void register(Integer userId, ApplicationRequest request) {
         Optional<User> user = userRepository.findById(userId);
-        if(user == null) {
+        if(!user.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         var application = Application.builder()
                 .companyName(request.getCompanyName())
                 .jobTitle(request.getJobTitle())
                 .date(request.getDate())
+                .country(request.getCountry())
                 .comment(request.getComment())
                 .status(Status.RESUME_SUBMITTED)
                 .user(user.get())
