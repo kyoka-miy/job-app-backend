@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,13 @@ public class ApplicationService {
                 .user(user.get())
                 .build();
         applicationRepository.save(application);
+    }
+
+    public List<Application> getApplications(Integer userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if(!user.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        return applicationRepository.findByUserId(user.get().getUserId());
     }
 }
