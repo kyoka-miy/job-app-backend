@@ -30,10 +30,11 @@ public class Application {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Application(String companyName, String jobTitle, LocalDate date, String comment, Status status, User user) {
+    public Application(String companyName, String jobTitle, LocalDate date, String country, String comment, Status status, User user) {
         this.companyName = companyName;
         this.jobTitle = jobTitle;
         this.date = date;
+        this.country = country;
         this.comment = comment;
         this.status = status;
         this.user = user;
