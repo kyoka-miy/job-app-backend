@@ -36,6 +36,7 @@ class ApplicationServiceTest {
                 "Job",
                 LocalDate.now(),
                 "Taiwan",
+                Status.RESUME_SUBMITTED,
                 "comment"
         );
         User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
@@ -65,6 +66,7 @@ class ApplicationServiceTest {
                 "Job",
                 LocalDate.now(),
                 "Taiwan",
+                Status.RESUME_SUBMITTED,
                 "comment"
         );
         User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
