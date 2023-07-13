@@ -99,6 +99,75 @@ class ApplicationServiceTest {
         verify(applicationRepository, times(1)).findByUserId(1);
         assertEquals(2, result.size());
     }
+
+    @Test
+    void canDeleteApplication() {
+        ApplicationRequest request = new ApplicationRequest(
+                "Amama",
+                "Job",
+                LocalDate.now(),
+                "Taiwan",
+                Status.RESUME_SUBMITTED,
+                "comment"
+        );
+        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        Application app1 = new Application(
+                "Amama",
+                "Job1",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        when(applicationRepository.findById(1)).thenReturn(Optional.of(app1));
+
+        // when
+        assertDoesNotThrow(() -> applicationService.deleteApplication(1));
+
+        // then
+        verify(applicationRepository, times(1)).findById(1);
+        verify(applicationRepository, times(1)).delete(app1);
+    }
+
+    @Test
+    void canPutApplication() {
+        ApplicationRequest request = new ApplicationRequest(
+                "Amama",
+                "Job",
+                LocalDate.now(),
+                "Taiwan",
+                Status.RESUME_SUBMITTED,
+                "comment"
+        );
+        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        Application app1 = new Application(
+                "Amama",
+                "Job1",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        Application app2 = new Application(
+                "Amama",
+                "Job",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        when(applicationRepository.findById(1)).thenReturn(Optional.of(app1));
+
+        // when
+        assertDoesNotThrow(() -> applicationService.updateApplication(1, request));
+
+        // then
+        verify(applicationRepository, times(1)).findById(1);
+        verify(applicationRepository, times(1)).save(app2);
+    }
     @Test
     void willThrowWhenUserIsNotFound() {
         //when
