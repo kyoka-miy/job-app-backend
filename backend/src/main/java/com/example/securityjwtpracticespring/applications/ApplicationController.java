@@ -1,6 +1,7 @@
 package com.example.securityjwtpracticespring.applications;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,16 +13,31 @@ public class ApplicationController {
     private final ApplicationService applicationService;
 
     @PostMapping("/{userId}")
-    public void addApplication (
+    public ResponseEntity<Application> addApplication (
         @RequestBody ApplicationRequest applicationRequest,
         @PathVariable Integer userId
     ) {
-        applicationService.register(userId, applicationRequest);
+        return ResponseEntity.ok(applicationService.register(userId, applicationRequest));
     }
     @GetMapping("/{userId}")
     public List<Application> getApplication (
         @PathVariable Integer userId
     ) {
         return applicationService.getApplications(userId);
+    }
+
+    @PutMapping("/{applicationId}")
+    public ResponseEntity<Application> updateApplication (
+            @PathVariable Integer applicationId,
+            @RequestBody ApplicationRequest applicationRequest
+    ) {
+        return ResponseEntity.ok(applicationService.updateApplication(applicationId, applicationRequest));
+    }
+
+    @DeleteMapping("/{applicationId}")
+    public void deleteApplication (
+            @PathVariable Integer applicationId
+    ) {
+        applicationService.deleteApplication(applicationId);
     }
 }

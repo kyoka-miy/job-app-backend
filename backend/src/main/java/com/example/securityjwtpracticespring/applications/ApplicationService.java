@@ -1,6 +1,5 @@
 package com.example.securityjwtpracticespring.applications;
 
-import com.example.securityjwtpracticespring.user.Role;
 import com.example.securityjwtpracticespring.user.User;
 import com.example.securityjwtpracticespring.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final UserRepository userRepository;
 
-    public void register(Integer userId, ApplicationRequest request) {
+    public Application register(Integer userId, ApplicationRequest request) {
         Optional<User> user = userRepository.findById(userId);
         if(!user.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
@@ -28,10 +27,10 @@ public class ApplicationService {
                 .date(request.getDate())
                 .country(request.getCountry())
                 .comment(request.getComment())
-                .status(Status.RESUME_SUBMITTED)
+                .status(request.getStatus())
                 .user(user.get())
                 .build();
-        applicationRepository.save(application);
+        return applicationRepository.save(application);
     }
 
     public List<Application> getApplications(Integer userId) {
@@ -40,5 +39,23 @@ public class ApplicationService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
         return applicationRepository.findByUserId(user.get().getUserId());
+    }
+
+    public Application updateApplication(Integer applicationId, ApplicationRequest request) {
+        Application selected = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Application not found"));
+        selected.setCompanyName(request.getCompanyName());
+        selected.setJobTitle(request.getJobTitle());
+        selected.setDate(request.getDate());
+        selected.setCountry(request.getCountry());
+        selected.setComment(request.getComment());
+        selected.setStatus(request.getStatus());
+        return applicationRepository.save(selected);
+    }
+
+    public void deleteApplication(Integer applicationId) {
+        Application selected = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Application not found"));
+        applicationRepository.delete(selected);
     }
 }

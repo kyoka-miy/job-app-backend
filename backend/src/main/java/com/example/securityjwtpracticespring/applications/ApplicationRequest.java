@@ -1,6 +1,8 @@
 package com.example.securityjwtpracticespring.applications;
 
 import jakarta.annotation.Nullable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +20,8 @@ public class ApplicationRequest {
     private String jobTitle;
     private LocalDate date;
     private String country;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Nullable
     private String comment;
 }
