@@ -9,10 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -54,33 +57,53 @@ class ApplicationServiceTest {
         verify(userRepository, times(1)).findById(1);
         verify(applicationRepository, times(1)).save(application);
     }
-//    @Test
-//    @Disabled
-//    void canGetAllApplicationsOfUser() {
-//        // given
-//        ApplicationRequest request = new ApplicationRequest(
-//                "Amama",
-//                "Job",
-//                LocalDate.now(),
-//                "Taiwan",
-//                "comment"
-//        );
-//
-//        // when
-//        applicationService.register(1, request);
-//
-//        // then
-//        Optional<Application> app1 = applicationRepository.findById(1);
-//        assertTrue(app1.isPresent());
-//        assertEquals(app1.get(), new Application(
-//                1,
-//                "Amama",
-//                "Job",
-//                LocalDate.now(),
-//                "Taiwan",
-//                "comment",
-//                Status.RESUME_SUBMITTED,
-//                user
-//        ));
-//    }
+
+    @Test
+    void canGetApplications() {
+        ApplicationRequest request = new ApplicationRequest(
+                "Amama",
+                "Job",
+                LocalDate.now(),
+                "Taiwan",
+                "comment"
+        );
+        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        Application app1 = new Application(
+                "Amama",
+                "Job1",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        Application app2 = new Application(
+                "Amama",
+                "Job2",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        when(userRepository.findById(1)).thenReturn(Optional.of(user));
+        when(applicationRepository.findByUserId(1)).thenReturn(List.of(app1, app2));
+
+        // when
+        List<Application> result = applicationService.getApplications(1);
+
+        // then
+        verify(userRepository, times(1)).findById(1);
+        verify(applicationRepository, times(1)).findByUserId(1);
+        assertEquals(2, result.size());
+    }
+    @Test
+    void willThrowWhenUserIsNotFound() {
+        //when
+        //then
+        assertThatThrownBy(() -> applicationService.getApplications(1))
+                .isInstanceOf(ResponseStatusException.class)
+                .hasMessageContaining("User not found");
+        verify(applicationRepository, never()).save(any());
+    }
 }
