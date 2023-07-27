@@ -17,4 +17,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 
     @Query("SELECT app FROM Application app WHERE app.user = :user AND (app.companyName LIKE %:searchText% OR app.jobTitle LIKE %:searchText%)")
     List<Application> findBySearchText(@Param("user") User user, @Param("searchText") String searchText);
+
+    @Query("SELECT app FROM Application app WHERE app.user = :user AND (app.status = :status)")
+    List<Application> findByStatus(@Param("user") User user, @Param("status") Status status);
 }

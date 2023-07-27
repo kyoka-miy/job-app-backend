@@ -64,4 +64,10 @@ public class ApplicationService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
         return applicationRepository.findBySearchText(user, searchText);
     }
+
+    public List<Application> getApplicationsByStatus(Integer userId, Status status) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return applicationRepository.findByStatus(user, status);
+    }
 }

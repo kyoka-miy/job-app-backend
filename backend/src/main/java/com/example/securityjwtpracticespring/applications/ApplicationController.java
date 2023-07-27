@@ -26,11 +26,18 @@ public class ApplicationController {
         return applicationService.getApplications(userId);
     }
     @GetMapping("/{userId}/{searchText}")
-    public List<Application> getApplication (
+    public List<Application> getApplicationBySearchText (
         @PathVariable("userId") Integer userId,
         @PathVariable("searchText") String searchText
     ) {
         return applicationService.getSearchedApplications(userId, searchText);
+    }
+    @GetMapping("/{userId}/status")
+    public List<Application> getApplicationByStatus (
+        @PathVariable("userId") Integer userId,
+        @RequestParam("status") Status status
+    ) {
+        return applicationService.getApplicationsByStatus(userId, status);
     }
 
     @PutMapping("/{applicationId}")
