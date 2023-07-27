@@ -21,9 +21,16 @@ public class ApplicationController {
     }
     @GetMapping("/{userId}")
     public List<Application> getApplication (
-        @PathVariable Integer userId
+        @PathVariable("userId") Integer userId
     ) {
         return applicationService.getApplications(userId);
+    }
+    @GetMapping("/{userId}/{searchText}")
+    public List<Application> getApplication (
+        @PathVariable("userId") Integer userId,
+        @PathVariable("searchText") String searchText
+    ) {
+        return applicationService.getSearchedApplications(userId, searchText);
     }
 
     @PutMapping("/{applicationId}")

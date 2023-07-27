@@ -3,10 +3,12 @@ package com.example.securityjwtpracticespring.applications;
 import com.example.securityjwtpracticespring.user.User;
 import com.example.securityjwtpracticespring.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.hibernate.annotations.Tables;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -34,11 +36,9 @@ public class ApplicationService {
     }
 
     public List<Application> getApplications(Integer userId) {
-        Optional<User> user = userRepository.findById(userId);
-        if(!user.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-        }
-        return applicationRepository.findByUserId(user.get().getUserId());
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return applicationRepository.findByUser(user);
     }
 
     public Application updateApplication(Integer applicationId, ApplicationRequest request) {
@@ -57,5 +57,11 @@ public class ApplicationService {
         Application selected = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Application not found"));
         applicationRepository.delete(selected);
+    }
+
+    public List<Application> getSearchedApplications(Integer userId, String searchText) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return applicationRepository.findBySearchText(user, searchText);
     }
 }
