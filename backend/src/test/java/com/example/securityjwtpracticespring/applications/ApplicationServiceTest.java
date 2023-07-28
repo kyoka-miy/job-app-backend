@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.securityjwtpracticespring.applications.Status.FIRST_INTERVIEW;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -169,5 +170,73 @@ class ApplicationServiceTest {
                 .isInstanceOf(ResponseStatusException.class)
                 .hasMessageContaining("User not found");
         verify(applicationRepository, never()).save(any());
+    }
+
+    @Test
+    @Disabled
+    void canGetApplicationsBySearchText() {
+        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        Application app1 = new Application(
+                "Amama",
+                "Job1",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        Application app2 = new Application(
+                "Amama",
+                "Job2",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        when(userRepository.findById(1)).thenReturn(Optional.of(user));
+        when(applicationRepository.findByUser(user)).thenReturn(List.of(app1, app2));
+
+        // when
+        List<Application> result = applicationService.getSearchedApplications(1, "A");
+
+        // then
+        verify(userRepository, times(1)).findById(1);
+        verify(applicationRepository, times(1)).findBySearchText(user, "A");
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    @Disabled
+    void canGetApplicationsByStatus() {
+        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        Application app1 = new Application(
+                "Amama",
+                "Job1",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                Status.RESUME_SUBMITTED,
+                user
+        );
+        Application app2 = new Application(
+                "Amama",
+                "Job2",
+                LocalDate.now(),
+                "Taiwan",
+                "comment",
+                FIRST_INTERVIEW,
+                user
+        );
+        when(userRepository.findById(1)).thenReturn(Optional.of(user));
+        when(applicationRepository.findByUser(user)).thenReturn(List.of(app1, app2));
+
+        // when
+        List<Application> result = applicationService.getApplicationsByStatus(1, FIRST_INTERVIEW);
+
+        // then
+        verify(userRepository, times(1)).findById(1);
+        verify(applicationRepository, times(1)).findByStatus(user, FIRST_INTERVIEW);
+        assertEquals(1, result.size());
     }
 }
