@@ -178,7 +178,6 @@ class ApplicationServiceTest {
     }
 
     @Test
-    @Disabled
     void canGetApplicationsBySearchText() {
         User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
@@ -199,20 +198,20 @@ class ApplicationServiceTest {
                 Status.RESUME_SUBMITTED,
                 user
         );
+        // Mock(テスト対象外のもの)
         when(userRepository.findById(1)).thenReturn(Optional.of(user));
-        when(applicationRepository.findByUser(user)).thenReturn(List.of(app1, app2));
+        when(applicationRepository.findBySearchText(user, "Amama")).thenReturn(List.of(app1, app2));
 
         // when
-        List<Application> result = applicationService.getSearchedApplications(1, "A");
+        List<Application> result = applicationService.getSearchedApplications(1, "Amama");
 
         // then
         verify(userRepository, times(1)).findById(1);
-        verify(applicationRepository, times(1)).findBySearchText(user, "A");
-        assertEquals(1, result.size());
+        verify(applicationRepository, times(1)).findBySearchText(user, "Amama");
+        assertEquals(2, result.size());
     }
 
     @Test
-    @Disabled
     void canGetApplicationsByStatus() {
         User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
@@ -234,7 +233,7 @@ class ApplicationServiceTest {
                 user
         );
         when(userRepository.findById(1)).thenReturn(Optional.of(user));
-        when(applicationRepository.findByUser(user)).thenReturn(List.of(app1, app2));
+        when(applicationRepository.findByStatus(user, FIRST_INTERVIEW)).thenReturn(List.of(app2));
 
         // when
         List<Application> result = applicationService.getApplicationsByStatus(1, FIRST_INTERVIEW);
