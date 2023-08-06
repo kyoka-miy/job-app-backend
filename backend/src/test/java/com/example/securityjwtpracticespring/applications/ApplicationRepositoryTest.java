@@ -28,7 +28,7 @@ class ApplicationRepositoryTest {
     @Test
     void itShouldGetApplicationsBySearch() {
         // given
-        User user = new User(1,"Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         userRepository.save(user);
         Application app1 = new Application(
                 "Amama",

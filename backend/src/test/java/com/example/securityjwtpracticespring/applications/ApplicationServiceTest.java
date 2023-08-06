@@ -4,6 +4,7 @@ import com.example.securityjwtpracticespring.user.Role;
 import com.example.securityjwtpracticespring.user.User;
 import com.example.securityjwtpracticespring.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,12 +25,16 @@ import static org.mockito.Mockito.*;
 @RequiredArgsConstructor
 @ExtendWith(MockitoExtension.class)
 class ApplicationServiceTest {
-    @InjectMocks
     private ApplicationService applicationService;
     @Mock
     private ApplicationRepository applicationRepository;
     @Mock
     private UserRepository userRepository;
+
+    @BeforeEach
+    void setUp() {
+        applicationService = new ApplicationService(applicationRepository, userRepository);
+    }
 
     @Test
     void canPostApplications() {
@@ -41,7 +46,7 @@ class ApplicationServiceTest {
                 Status.RESUME_SUBMITTED,
                 "comment"
         );
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application application = new Application(
                 "Amama",
                 "Job",
@@ -63,7 +68,7 @@ class ApplicationServiceTest {
 
     @Test
     void canGetApplications() {
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
                 "Amama",
                 "Job1",
@@ -104,7 +109,7 @@ class ApplicationServiceTest {
                 Status.RESUME_SUBMITTED,
                 "comment"
         );
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
                 "Amama",
                 "Job1",
@@ -134,7 +139,7 @@ class ApplicationServiceTest {
                 Status.RESUME_SUBMITTED,
                 "comment"
         );
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
                 "Amama",
                 "Job1",
@@ -175,7 +180,7 @@ class ApplicationServiceTest {
     @Test
     @Disabled
     void canGetApplicationsBySearchText() {
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
                 "Amama",
                 "Job1",
@@ -209,7 +214,7 @@ class ApplicationServiceTest {
     @Test
     @Disabled
     void canGetApplicationsByStatus() {
-        User user = new User(1, "Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
+        User user = new User("Firstname", "Lastname", "mail@mail.com", "password", Role.USER);
         Application app1 = new Application(
                 "Amama",
                 "Job1",
