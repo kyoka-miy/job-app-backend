@@ -22,10 +22,10 @@ public class SampleDataInitializer implements CommandLineRunner {
     }
     @Override
     public void run(String... args) {
-        User user1 = new User(1, "John", "Doe", "john@example.com", "$2a$10$G5e8Vy....", Role.USER);
+        User user1 = new User("John", "Doe", "john@example.com", "$2a$10$G5e8Vy....", Role.USER);
         userRepository.save(user1);
 
-        User user2 = new User(2, "Jane", "Smith", "jane@example.com", "$2a$10$G5e8Vy....", Role.USER);
+        User user2 = new User("Jane", "Smith", "jane@example.com", "$2a$10$G5e8Vy....", Role.USER);
         userRepository.save(user2);
 
         Application application1 = new Application(1, "Amapon", "Software Engineer", LocalDate.now(), "Uganda", "commentcomment", Status.RESUME_SUBMITTED, user1);
