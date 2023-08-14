@@ -42,7 +42,8 @@ public class AuthenticationService {
                         Role.USER
                 )
         );
-        String link = "http://localhost:8080/api/v1/auth/confirm?token=" + token;
+        // http://localhost:8080
+        String link = "https://job-application-management-app-production.up.railway.app/api/v1/auth/confirm?token=" + token;
         emailSender.send(request.getEmail(), buildEmail(request.getFirstname(), link));
         return token;
     }
