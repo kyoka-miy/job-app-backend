@@ -12,7 +12,7 @@ import java.util.List;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
-    @PostMapping("/{userId}")
+    @PostMapping("/add/{userId}")
     public ResponseEntity<Application> addApplication (
         @RequestBody ApplicationRequest applicationRequest,
         @PathVariable Integer userId
@@ -25,7 +25,7 @@ public class ApplicationController {
     ) {
         return applicationService.getApplications(userId);
     }
-    @GetMapping("/{userId}/{searchText}")
+    @GetMapping("/search/{userId}/{searchText}")
     public List<Application> getApplicationBySearchText (
         @PathVariable("userId") Integer userId,
         @PathVariable("searchText") String searchText
@@ -40,7 +40,7 @@ public class ApplicationController {
         return applicationService.getApplicationsByStatus(userId, status);
     }
 
-    @PutMapping("/{applicationId}")
+    @PutMapping("/update/{applicationId}")
     public ResponseEntity<Application> updateApplication (
             @PathVariable Integer applicationId,
             @RequestBody ApplicationRequest applicationRequest
@@ -48,7 +48,7 @@ public class ApplicationController {
         return ResponseEntity.ok(applicationService.updateApplication(applicationId, applicationRequest));
     }
 
-    @DeleteMapping("/{applicationId}")
+    @DeleteMapping("/delete/{applicationId}")
     public void deleteApplication (
             @PathVariable Integer applicationId
     ) {
