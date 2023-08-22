@@ -3,8 +3,10 @@ package com.example.securityjwtpracticespring.user;
 import com.example.securityjwtpracticespring.auth.token.ConfirmationToken;
 import com.example.securityjwtpracticespring.auth.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -20,7 +22,7 @@ public class UserService {
                 .findByEmail(user.getEmail())
                 .isPresent();
         if(userExists) {
-            throw new IllegalStateException("email already taken");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This email is already taken");
         }
         String encodedPassword = bCryptPasswordEncoder
                 .encode(user.getPassword());

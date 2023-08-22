@@ -73,7 +73,7 @@ public class AuthenticationService {
         return "confirmed";
     }
     public int authenticate(AuthenticationRequest request) {
-        User user = userRepository.findByEmail(request.getEmail())
+        User user = userRepository.findByEmail(request.getMailAddress())
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Email is not registered"));
         ConfirmationToken token = confirmationTokenRepository.findByUser(user)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token not found"));
