@@ -9,6 +9,7 @@ import com.example.securityjwtpracticespring.user.User;
 import com.example.securityjwtpracticespring.user.UserRepository;
 import com.example.securityjwtpracticespring.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,11 @@ public class AuthenticationService {
     private final UserRepository userRepository;
     private final ConfirmationTokenRepository confirmationTokenRepository;
 
-    public String register(RegisterRequest request) {
-        boolean isValidEmail = emailValidator.test(request.getEmail());
+    @Value("${backend.base-url}")
+    private String baseUrl;
+
+    public void register(RegisterRequest request) {
+        boolean isValidEmail = emailValidator.test(request.getMailAddress());
         if(!isValidEmail) {
             throw new IllegalStateException("email not valid");
         }
@@ -37,15 +41,13 @@ public class AuthenticationService {
                 new User(
                         request.getFirstname(),
                         request.getLastname(),
-                        request.getEmail(),
+                        request.getMailAddress(),
                         request.getPassword(),
                         Role.USER
                 )
         );
-        // http://localhost:8080
-        String link = "https://job-application-management-app-production.up.railway.app/api/v1/auth/confirm?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getFirstname(), link));
-        return token;
+        String link = baseUrl + "/api/v1/auth/confirm?token=" + token;
+        emailSender.send(request.getMailAddress(), buildEmail(request.getFirstname(), link));
     }
 
     @Transactional
