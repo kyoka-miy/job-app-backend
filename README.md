@@ -1,9 +1,8 @@
-# job-application-management-app
+# Job-App-Backend
+Backend of Job application management web application (Java, Spring, Postgres)
 
-So Far >
-Java, Spring, Spring Boot
-JWT, Maven, Unit Test, REST API, CRUD, Spring Security, Authorization, 
-Sign Up/Log In, User Registration, Add/Get Job Applications, Custom Error Message
+## Prod
+Deployed by using Railway
 
-Plan to >
-TypeScript, React, Styled Component, Test Driven, Docker
+## How to Run Locally
+docker-compose
