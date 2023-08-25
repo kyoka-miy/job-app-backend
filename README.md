@@ -8,6 +8,6 @@ Deployed by using Railway https://job-app-backend-production.up.railway.app/
 docker-compose
 
 ## Feature
-### Login Form with token authentication (Sign up, mail confirmation, log in)
-### Application GET, POST, PUT, DELETE
-### User GET, POST, PUT, DELETE
+Login Form with token authentication (Sign up, mail confirmation, log in)
+Application GET, POST, PUT, DELETE
+User GET, POST, PUT, DELETE
