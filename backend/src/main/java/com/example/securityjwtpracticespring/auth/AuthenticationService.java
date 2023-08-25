@@ -72,8 +72,8 @@ public class AuthenticationService {
                 confirmationToken.getUser().getEmail());
         return "confirmed";
     }
-    public int authenticate(AuthenticationRequest request) {
-        User user = userRepository.findByEmail(request.getMailAddress())
+    public int authenticate(String mailAddress, String password) {
+        User user = userRepository.findByEmail(mailAddress)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Email is not registered"));
         ConfirmationToken token = confirmationTokenRepository.findByUser(user)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token not found"));
@@ -83,7 +83,7 @@ public class AuthenticationService {
         if(!user.isEnabled()) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "User account is not enabled");
         }
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong Password");
         }
 

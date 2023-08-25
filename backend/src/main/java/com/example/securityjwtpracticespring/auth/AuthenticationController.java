@@ -25,8 +25,9 @@ public class AuthenticationController {
     }
     @GetMapping("/authenticate")
     public int authenticate(
-          @RequestBody AuthenticationRequest request
+          @RequestParam("mailAddress") String mailAddress,
+          @RequestParam("password") String password
     ) {
-        return authenticationService.authenticate(request);
+        return authenticationService.authenticate(mailAddress, password);
     }
 }
