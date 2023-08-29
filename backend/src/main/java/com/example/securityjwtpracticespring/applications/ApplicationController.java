@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/auth/application")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "${spring.mvc.cors.allowed-origins}")
 public class ApplicationController {
     private final ApplicationService applicationService;
 

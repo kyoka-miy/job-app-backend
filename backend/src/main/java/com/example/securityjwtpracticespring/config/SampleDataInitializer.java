@@ -22,16 +22,18 @@ public class SampleDataInitializer implements CommandLineRunner {
     }
     @Override
     public void run(String... args) {
-        User user1 = new User("John", "Doe", "john@example.com", "$2a$10$G5e8Vy....", Role.USER);
+        User user1 = new User("Kyoka", "Mi", "test@test.com", "$2a$10$G5e8Vy....", Role.USER, true);
         userRepository.save(user1);
 
-        User user2 = new User("Jane", "Smith", "jane@example.com", "$2a$10$G5e8Vy....", Role.USER);
+        User user2 = new User("Jane", "Smith", "jane@example.com", "$2a$10$G5e8Vy....", Role.USER, false);
         userRepository.save(user2);
 
-        Application application1 = new Application(1, "Amapon", "Software Engineer", LocalDate.now(), "Uganda", "commentcomment", Status.RESUME_SUBMITTED, user1);
+        Application application1 = new Application(1, "Amapon", "Software Engineer", LocalDate.now(), "London", "commentcomment", Status.RESUME_SUBMITTED, user1);
         applicationRepository.save(application1);
-        Application application2 = new Application(2, "Amapon", "Software Engineer", LocalDate.now(), "Uganda", "commentcomment", Status.RESUME_SUBMITTED, user2);
+        Application application2 = new Application(2, "Spopotif", "Software Engineer", LocalDate.now(), "New York", "commentcomment", Status.RESUME_SUBMITTED, user1);
         applicationRepository.save(application2);
+        Application application3 = new Application(3, "Bloombong", "Full Stack Engineer", LocalDate.now(), "Boston", "commentcomment", Status.FIRST_INTERVIEW, user1);
+        applicationRepository.save(application3);
     }
 }
 
