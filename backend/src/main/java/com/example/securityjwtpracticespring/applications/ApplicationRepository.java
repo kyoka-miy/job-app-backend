@@ -14,7 +14,7 @@ import static org.hibernate.cfg.AvailableSettings.USER;
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
     List<Application> findByUser(User user);
 
-    @Query("SELECT app FROM Application app WHERE app.user = :user AND (app.companyName LIKE %:searchText% OR app.jobTitle LIKE %:searchText%)")
+    @Query("SELECT app FROM Application app WHERE app.user = :user AND (LOWER(app.companyName) LIKE LOWER(concat('%', :searchText, '%')) OR LOWER(app.jobTitle) LIKE LOWER(concat('%', :searchText, '%')))")
     List<Application> findBySearchText(@Param("user") User user, @Param("searchText") String searchText);
 
     @Query("SELECT app FROM Application app WHERE app.user = :user AND (app.status = :status)")
