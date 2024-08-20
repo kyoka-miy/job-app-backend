@@ -45,15 +45,15 @@ jooq {
 		create("main") {
 			jooqConfiguration.apply {
 				jdbc.apply {
-					url = "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
-					user = "user"
-					password = "password"
+					url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+					user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
+					password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 				}
 				generator.apply {
 					name = "org.jooq.codegen.KotlinGenerator"
 					database.apply {
 						name = "org.jooq.meta.mysql.MySQLDatabase"
-						inputSchema = "job_app"
+						inputSchema = "dzjfxl0e6xe15m02"
 						excludes = "flyway_schema_history"
 					}
 					generate.apply {
