@@ -35,9 +35,9 @@ dependencies {
 }
 
 flyway {
-	url = "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
-	user = "user"
-	password = "password"
+	url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+	user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
+	password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 }
 
 jooq {
