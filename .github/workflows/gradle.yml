@@ -21,6 +21,8 @@ jobs:
       run: docker compose up -d
     - name: Migrate DB
       run: ./gradlew flywayMigrate
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
     - name: Build with Gradle
       run: ./gradlew build
     - name: Run tests
