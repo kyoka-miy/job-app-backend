@@ -65,7 +65,7 @@ jooq {
                     name = "org.jooq.codegen.KotlinGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
-                        inputSchema = "dzjfxl0e6xe15m02"
+                        inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"
                         excludes = "flyway_schema_history"
                     }
                     generate.apply {

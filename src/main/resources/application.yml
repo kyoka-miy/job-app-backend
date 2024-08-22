@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: job-app
+
+# Default profile, typically used for local development
+  profiles:
+    active: local
