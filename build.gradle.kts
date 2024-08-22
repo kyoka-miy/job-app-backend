@@ -44,6 +44,9 @@ ktlint {
     reporters {
         reporter(org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
     }
+    filter {
+        exclude { it.file.absolutePath.contains("/generated/") }
+    }
 }
 
 flyway {
