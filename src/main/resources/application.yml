@@ -5,3 +5,6 @@ spring:
 # Default profile, typically used for local development
   profiles:
     active: local
+  datasource:
+    hikari:
+      maximum-pool-size: 5
