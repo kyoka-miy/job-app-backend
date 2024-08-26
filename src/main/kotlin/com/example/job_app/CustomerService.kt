@@ -1,7 +1,7 @@
 package com.example.job_app
 
-import com.example.ktknowledgeTodo.infra.jooq.tables.records.CustomersRecord
-import com.example.ktknowledgeTodo.infra.jooq.tables.references.CUSTOMERS
+import com.example.ktknowledgeTodo.infra.jooq.Tables.ACCOUNTS
+import com.example.ktknowledgeTodo.infra.jooq.tables.records.AccountsRecord
 import org.jooq.DSLContext
 import org.jooq.Result
 import org.springframework.stereotype.Service
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class CustomerService(
     private val jooq: DSLContext
 ) {
-    public fun fetchCustomer(): Result<CustomersRecord> {
-        return jooq.selectFrom(CUSTOMERS).where(CUSTOMERS.CUSTOMER_ID.eq("")).fetch()
+    public fun fetchCustomer(): Result<AccountsRecord> {
+        return jooq.selectFrom(ACCOUNTS).where(ACCOUNTS.ACCOUNT_ID.eq(1)).fetch()
     }
 }

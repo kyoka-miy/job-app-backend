@@ -24,17 +24,30 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-jooq")
+    implementation("org.springframework.boot:spring-boot-starter-jooq") {
+        exclude(group = "org.jooq", module = "jooq")
+    }
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
     runtimeOnly("com.mysql:mysql-connector-j")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     jooqGenerator("com.mysql:mysql-connector-j")
     jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:4.0.0")
+
+    implementation("org.jooq:jooq:3.16.4") // Or the specific version you're using
+    implementation("org.jooq:jooq-meta:3.16.4")
+    implementation("org.jooq:jooq-codegen:3.16.4")
 }
 
 ktlint {
@@ -65,7 +78,7 @@ jooq {
                     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
                 }
                 generator.apply {
-                    name = "org.jooq.codegen.KotlinGenerator"
+                    name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
                         inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"

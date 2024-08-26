@@ -8,3 +8,7 @@ spring:
   datasource:
     hikari:
       maximum-pool-size: 5
+
+jwt:
+  secret_key: C8C6D159EB43729B1190D0EFE6907414677162741A2B067ECC985081D16BD577
+  expiration: 86400000

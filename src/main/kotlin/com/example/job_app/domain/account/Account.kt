@@ -1,0 +1,32 @@
+package com.example.job_app.domain.account
+
+import jakarta.persistence.*
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import java.time.LocalDateTime
+
+@Entity
+@Table(name = "account")
+data class Account(
+    @Id
+    @GeneratedValue
+    val accountId: Int? = null,
+    val registeredDatetime: LocalDateTime,
+    val email: String,
+    val _password: String,
+    val name: String,
+    val role: Role
+) : UserDetails {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return listOf(SimpleGrantedAuthority("ROLE_${role.name}"))
+    }
+
+    override fun getPassword(): String {
+        return _password
+    }
+
+    override fun getUsername(): String {
+        return email
+    }
+}
