@@ -4,13 +4,16 @@ import com.example.job_app.domain.account.Account
 import com.example.job_app.domain.account.AccountRepository
 import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.jwt.JwtService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 @Component
 class AccountUsecase(
     private val accountRepository: AccountRepository,
-    private val jwtService: JwtService
+    private val jwtService: JwtService,
+    private val passwordEncoder: PasswordEncoder
 ) {
     fun execute(
         email: String,
@@ -22,7 +25,7 @@ class AccountUsecase(
             null,
             LocalDateTime.now(),
             email,
-            password,
+            passwordEncoder.encode(password),
             name,
             role
         )

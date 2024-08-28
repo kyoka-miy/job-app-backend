@@ -6,11 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 
-@Entity
-@Table(name = "account")
 data class Account(
-    @Id
-    @GeneratedValue
     val accountId: Int? = null,
     val registeredDatetime: LocalDateTime,
     val email: String,

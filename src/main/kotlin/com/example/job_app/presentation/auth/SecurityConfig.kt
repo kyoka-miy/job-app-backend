@@ -17,13 +17,12 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { r ->
                 r
-                    .requestMatchers("/", "/accounts/register").permitAll()
+                    .requestMatchers("/", "/accounts/register", "/login").permitAll()
                     .requestMatchers("/actuator/health").permitAll()
                     .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()
             }
-//            .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
             .csrf { it.disable() }
         return http.build()

@@ -3,6 +3,7 @@ package com.example.job_app.presentation.controller
 import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.account.AccountUsecase
 import jakarta.validation.constraints.NotBlank
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,7 +16,8 @@ class AccountController(
 ) {
     @PostMapping("/register")
     fun register(
-        @RequestBody request: AccountCreateRequest
+        @RequestBody @Validated
+        request: AccountCreateRequest
     ): String {
         val role = request.role ?: Role.USER
         return accountUsecase.execute(
