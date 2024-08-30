@@ -15,7 +15,6 @@ class JooqConfig(private val dataSource: DataSource) {
     @Bean
     fun dslContext(): DSLContext {
         val settings = Settings()
-        // Customize settings if needed
         val configuration = DefaultConfiguration()
             .set(dataSource)
             .set(SQLDialect.MYSQL)

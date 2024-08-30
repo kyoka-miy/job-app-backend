@@ -1,6 +1,7 @@
 package com.example.job_app.usecase.jwt
 
 import com.example.job_app.infra.jwt.JwtProperties
+import com.example.job_app.presentation.auth.ExpiredTokenRepository
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
@@ -14,7 +15,8 @@ import java.util.function.Function
 
 @Service
 class JwtService(
-    private val jwtProperties: JwtProperties
+    private val jwtProperties: JwtProperties,
+    private val expiredTokenRepository: ExpiredTokenRepository
 ) {
     fun extractUsername(token: String): String {
         return extractClaim(token) { obj: Claims -> obj.subject }
@@ -34,7 +36,9 @@ class JwtService(
             .body
     }
     fun isTokenValid(accountEmail: String, accountDetails: UserDetails, token: String): Boolean {
-        return (accountEmail == accountDetails.username) && !isTokenExpired(token)
+        return (accountEmail == accountDetails.username) &&
+            !isTokenExpired(token) &&
+            !expiredTokenRepository.doesExists(token)
     }
 
     private fun isTokenExpired(token: String): Boolean {
