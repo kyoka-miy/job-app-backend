@@ -20,7 +20,7 @@ class SecurityConfig(
         http
             .authorizeHttpRequests { r ->
                 r
-                    .requestMatchers("/", "/v1/register", "/v1/login").permitAll()
+                    .requestMatchers("/", "/auth/register", "/auth/login").permitAll()
                     .requestMatchers("/actuator/health").permitAll()
                     .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                     .requestMatchers("/admin/**").hasRole("ADMIN")

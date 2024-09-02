@@ -24,12 +24,13 @@ class AccountRepositoryImpl(
             .execute()
     }
 
-    override fun findByEmail(email: String): Account {
+    override fun findByEmail(email: String): Account? {
         return jooq.selectFrom(ACCOUNTS)
             .where(ACCOUNTS.EMAIL.eq(email))
-            .fetchOne {
+            .fetchOne()
+            ?.let {
                 recordToEntity(it)
-            } ?: throw UsernameNotFoundException("No user found with email: $email")
+            }
     }
 
     private fun recordToEntity(record: AccountsRecord): Account {

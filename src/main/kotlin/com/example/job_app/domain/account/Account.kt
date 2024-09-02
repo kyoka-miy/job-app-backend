@@ -1,13 +1,13 @@
 package com.example.job_app.domain.account
 
-import jakarta.persistence.*
+import com.example.job_app.domain.shared.IdGenerator
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 
 data class Account(
-    val accountId: Int? = null,
+    val accountId: String? = IdGenerator.generate(),
     val registeredDatetime: LocalDateTime,
     val email: String,
     val _password: String,

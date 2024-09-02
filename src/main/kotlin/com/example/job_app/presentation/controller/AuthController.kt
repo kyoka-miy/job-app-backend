@@ -5,14 +5,16 @@ import com.example.job_app.usecase.account.AccountUsecase
 import com.example.job_app.usecase.auth.AuthUsecase
 import com.example.job_app.usecase.logout.LogoutService
 import jakarta.servlet.http.HttpServletRequest
+import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotEmpty
+import jakarta.validation.constraints.Pattern
+import jakarta.validation.constraints.Size
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
-@RestController("/v1")
+@RestController
+@RequestMapping("/auth")
 class AuthController(
     private val authUsecase: AuthUsecase,
     private val logoutService: LogoutService,
@@ -23,12 +25,11 @@ class AuthController(
         @RequestBody @Validated
         request: AccountCreateRequest
     ): String {
-        val role = request.role ?: Role.USER
         return accountUsecase.execute(
             request.email,
             request.name,
             request.password,
-            role
+            request.role
         )
     }
 
@@ -48,12 +49,23 @@ class AuthController(
 }
 
 data class AccountCreateRequest(
-    @field:NotBlank val email: String,
-    @field:NotBlank val name: String,
-    @field:NotBlank val password: String,
+    @field:NotBlank(message = "required mail address")
+    @field:Email(message = "Invalid email format")
+    val email: String,
+    @field:NotBlank(message = "Name cannot be empty")
+    val name: String,
+    @field:NotBlank(message = "Password cannot be empty")
+    @field:Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+    @field:Pattern(regexp = "[\\x21-\\x7E]+", message = "Password must contain only alphanumeric characters and symbols")
+    val password: String,
     val role: Role?
 )
 data class LoginRequest(
-    @field:NotBlank val email: String,
-    @field:NotBlank val password: String
+    @field:NotBlank(message = "required mail address")
+    @field:Email(message = "Invalid email format")
+    val email: String,
+    @field:NotBlank(message = "Password cannot be empty")
+    @field:Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
+    @field:Pattern(regexp = "[\\x21-\\x7E]+", message = "Password must contain only alphanumeric characters and symbols")
+    val password: String
 )
