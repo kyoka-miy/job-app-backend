@@ -11,9 +11,6 @@ class LogoutService(
 ) {
     fun logout(request: HttpServletRequest) {
         val authHeader = request.getHeader("Authorization")
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return
-        }
         val jwt = authHeader.substring(7)
         expiredTokenRepository.put(jwt)
         SecurityContextHolder.clearContext()

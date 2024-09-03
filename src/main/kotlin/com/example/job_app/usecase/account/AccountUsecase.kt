@@ -4,6 +4,7 @@ import com.example.job_app.domain.account.Account
 import com.example.job_app.domain.account.AccountRepository
 import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.jwt.JwtService
+import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -23,7 +24,7 @@ class AccountUsecase(
         role: Role?
     ): String {
         if (accountRepository.findByEmail(email) != null) {
-            throw UseCaseException("MailAddress.ALreadyExists", "This email is already registered")
+            throw UseCaseException(UseCaseErrorCodes.AccountRegister.emailDuplicate, "This email is already registered")
         }
 
         val account = Account(

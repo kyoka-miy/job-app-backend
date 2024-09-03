@@ -2,6 +2,7 @@ package com.example.job_app.usecase.auth
 
 import com.example.job_app.domain.account.AccountRepository
 import com.example.job_app.usecase.jwt.JwtService
+import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -20,7 +21,8 @@ class AuthUsecase(
                 password
             )
         )
-        val account = accountRepository.findByEmail(email) ?: throw UseCaseException("MailNotFound", "Mail address not found")
+        val account = accountRepository.findByEmail(email)
+            ?: throw UseCaseException(UseCaseErrorCodes.Login.emailNotFound, "Email not found")
         return jwtService.generateToken(account)
     }
 }
