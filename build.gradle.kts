@@ -70,13 +70,6 @@ flyway {
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 }
-// Flywayの前に、SQLとJavaを両方クラスパスに入れる
-tasks.withType<FlywayMigrateTask> {
-    dependsOn("classes")
-}
-tasks.withType<FlywayInfoTask> {
-    dependsOn("classes")
-}
 // flywayInfoとflywayMigrateのときは、classesが依存しているgenerateJooqを無効化する
 // ついでにktlintFormatのときも無効にする
 gradle.taskGraph.whenReady {
@@ -89,15 +82,15 @@ jooq {
         create("main") {
             jooqConfiguration.apply {
                 jdbc.apply {
-                    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
-                    user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
-                    password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
+                    url = "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+                    user = "user"
+                    password = "password"
                 }
                 generator.apply {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
-                        inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"
+                        inputSchema = "job_app"
                         excludes = "flyway_schema_history"
                     }
                     generate.apply {
