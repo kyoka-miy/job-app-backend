@@ -1,3 +1,5 @@
+import org.flywaydb.gradle.task.FlywayInfoTask
+import org.flywaydb.gradle.task.FlywayMigrateTask
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -68,7 +70,20 @@ flyway {
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 }
-
+// Flywayの前に、SQLとJavaを両方クラスパスに入れる
+tasks.withType<FlywayMigrateTask> {
+    dependsOn("classes")
+}
+tasks.withType<FlywayInfoTask> {
+    dependsOn("classes")
+}
+// flywayInfoとflywayMigrateのときは、classesが依存しているgenerateJooqを無効化する
+// ついでにktlintFormatのときも無効にする
+gradle.taskGraph.whenReady {
+    if (hasTask(tasks["flywayMigrate"]) || hasTask(tasks["flywayInfo"]) || hasTask(tasks["ktlintFormat"])) {
+        tasks["generateJooq"].enabled = false
+    }
+}
 jooq {
     configurations {
         create("main") {
