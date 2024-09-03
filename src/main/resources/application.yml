@@ -8,6 +8,9 @@ spring:
   datasource:
     hikari:
       maximum-pool-size: 5
+      minimum-idle: 2
+      idle-timeout: 10000
+      max-lifetime: 60000
 
 jwt:
   secret_key: C8C6D159EB43729B1190D0EFE6907414677162741A2B067ECC985081D16BD577
