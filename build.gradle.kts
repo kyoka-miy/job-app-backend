@@ -70,13 +70,7 @@ flyway {
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 }
-// flywayInfoとflywayMigrateのときは、classesが依存しているgenerateJooqを無効化する
-// ついでにktlintFormatのときも無効にする
-gradle.taskGraph.whenReady {
-    if (hasTask(tasks["flywayMigrate"]) || hasTask(tasks["flywayInfo"]) || hasTask(tasks["ktlintFormat"])) {
-        tasks["generateJooq"].enabled = false
-    }
-}
+
 jooq {
     configurations {
         create("main") {
