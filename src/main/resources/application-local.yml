@@ -4,6 +4,11 @@ spring:
     username: user
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+    hikari:
+      maximum-pool-size: 5  # Adjust this according to your MySQL server's max_user_connections
+      minimum-idle: 2
+      idle-timeout: 10000
+      max-lifetime: 1800000
+      connection-timeout: 30000
 server:
   port: 8080
