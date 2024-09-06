@@ -4,10 +4,10 @@ data class UseCaseErrorCode(val value: String)
 
 object UseCaseErrorCodes {
     object AccountRegister {
-        val emailDuplicate = UseCaseErrorCode("AccountRegister.emailDuplicate")
+        val emailDuplicate = UseCaseErrorCode("accountRegister.emailDuplicate")
     }
 
     object Login {
-        val emailNotFound = UseCaseErrorCode("Login.emailNotFound")
+        val emailNotFound = UseCaseErrorCode("login.emailNotFound")
     }
 }

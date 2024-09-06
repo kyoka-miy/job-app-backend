@@ -4,7 +4,6 @@ import com.example.job_app.domain.shared.DomainException
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -12,13 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 @ControllerAdvice
 class ExceptionHandler {
     @ExceptionHandler // for validation error
-    fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<Map<String, String>> {
-        val errors = ex.bindingResult.allErrors.associate { error ->
-            val fieldName = (error as FieldError).field
-            val errorMessage = error.defaultMessage ?: "Invalid value"
-            fieldName to errorMessage
-        }
-        return ResponseEntity(errors, HttpStatus.BAD_REQUEST)
+    fun handleValidationExceptions(ex: MethodArgumentNotValidException): ResponseEntity<ExceptionResponse> {
+        val error = ExceptionResponse("invalidRequest", ex.bindingResult.allErrors[0].defaultMessage ?: "Invalid value")
+        return ResponseEntity<ExceptionResponse>(error, HttpStatus.BAD_REQUEST)
     }
 
     @ExceptionHandler
