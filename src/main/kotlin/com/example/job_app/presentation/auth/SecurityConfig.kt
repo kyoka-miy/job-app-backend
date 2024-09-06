@@ -13,7 +13,6 @@ import org.springframework.security.web.authentication.logout.LogoutHandler
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtAuthFilter: JwtAuthFilter
-//    private val logoutHandler: LogoutHandler
 ) {
     @Bean
     fun configureHttpSecurity(http: HttpSecurity): SecurityFilterChain {

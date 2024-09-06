@@ -8,6 +8,7 @@ object UseCaseErrorCodes {
     }
 
     object Login {
+        val wrongPassword = UseCaseErrorCode("login.wrongPassword")
         val emailNotFound = UseCaseErrorCode("login.emailNotFound")
     }
 }

@@ -15,14 +15,18 @@ class AuthUsecase(
     private val jwtService: JwtService
 ) {
     fun execute(email: String, password: String): String {
-        authenticationManager.authenticate(
-            UsernamePasswordAuthenticationToken(
-                email,
-                password
-            )
-        )
         val account = accountRepository.findByEmail(email)
             ?: throw UseCaseException(UseCaseErrorCodes.Login.emailNotFound, "Email not found")
+        try {
+            authenticationManager.authenticate(
+                UsernamePasswordAuthenticationToken(
+                    email,
+                    password
+                )
+            )
+        } catch (e: Exception) {
+            throw UseCaseException(UseCaseErrorCodes.Login.wrongPassword, "Wrong password")
+        }
         return jwtService.generateToken(account)
     }
 }
