@@ -6,13 +6,12 @@ import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.jwt.JwtService
 import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 @Component
-class AccountUsecase(
+class RegisterAccountUsecase(
     private val accountRepository: AccountRepository,
     private val jwtService: JwtService,
     private val passwordEncoder: PasswordEncoder

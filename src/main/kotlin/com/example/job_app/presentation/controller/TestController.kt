@@ -9,14 +9,4 @@ class TestController {
     fun test(): String {
         return "Hello World!"
     }
-
-    @GetMapping("/test")
-    fun test2(): String {
-        return "Hello World!!!"
-    }
-
-    @GetMapping("/admin")
-    fun test3(): String {
-        return "You are ADMIN"
-    }
 }

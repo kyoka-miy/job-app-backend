@@ -1,13 +1,12 @@
 package com.example.job_app.presentation.controller
 
 import com.example.job_app.domain.account.Role
-import com.example.job_app.usecase.account.AccountUsecase
+import com.example.job_app.usecase.account.RegisterAccountUsecase
 import com.example.job_app.usecase.auth.AuthUsecase
 import com.example.job_app.usecase.logout.LogoutService
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Size
 import org.springframework.validation.annotation.Validated
@@ -18,14 +17,14 @@ import org.springframework.web.bind.annotation.*
 class AuthController(
     private val authUsecase: AuthUsecase,
     private val logoutService: LogoutService,
-    private val accountUsecase: AccountUsecase
+    private val registerAccountUsecase: RegisterAccountUsecase
 ) {
     @PostMapping("/register")
     fun register(
         @RequestBody @Validated
         request: AccountCreateRequest
     ): String {
-        return accountUsecase.execute(
+        return registerAccountUsecase.execute(
             request.email,
             request.name,
             request.password,

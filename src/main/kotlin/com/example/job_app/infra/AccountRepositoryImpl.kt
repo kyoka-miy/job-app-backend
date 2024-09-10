@@ -5,6 +5,7 @@ import com.example.job_app.domain.account.AccountRepository
 import com.example.job_app.domain.account.Role
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
+import com.example.job_app.presentation.controller.AccountDto
 import com.example.ktknowledgeTodo.infra.jooq.Tables.ACCOUNTS
 import com.example.ktknowledgeTodo.infra.jooq.tables.records.AccountsRecord
 import org.jooq.DSLContext
@@ -38,12 +39,31 @@ class AccountRepositoryImpl(
             }
     }
 
+    override fun findAll(): List<AccountDto> {
+        return jooq.selectFrom(ACCOUNTS)
+            .orderBy(ACCOUNTS.REGISTERED_DATETIME.desc())
+            .fetch()
+            .mapNotNull {
+                recordToAccountDto(it)
+            }
+    }
+
     private fun recordToEntity(record: AccountsRecord): Account {
         return Account(
             accountId = record.accountId,
             registeredDatetime = record.registeredDatetime,
             email = record.email,
             _password = record.password,
+            name = record.name,
+            role = Role.valueOf(record.role)
+        )
+    }
+
+    private fun recordToAccountDto(record: AccountsRecord): AccountDto {
+        return AccountDto(
+            accountId = record.accountId,
+            registeredDatetime = record.registeredDatetime,
+            email = record.email,
             name = record.name,
             role = Role.valueOf(record.role)
         )

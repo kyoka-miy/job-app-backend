@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 
 data class Account(
-    val accountId: String? = IdGenerator.generate(),
+    val accountId: String = IdGenerator.generate(),
     val registeredDatetime: LocalDateTime,
     val email: String,
     val _password: String,
