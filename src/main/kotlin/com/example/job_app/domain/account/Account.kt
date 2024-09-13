@@ -11,7 +11,7 @@ data class Account(
     val registeredDatetime: LocalDateTime,
     val email: String,
     val _password: String,
-    val name: String,
+    var name: String,
     val role: Role
 ) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> {

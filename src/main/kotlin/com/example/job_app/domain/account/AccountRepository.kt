@@ -8,4 +8,6 @@ interface AccountRepository {
     fun insert(account: Account)
     fun findByEmail(email: String): Account?
     fun findAll(): List<AccountDto>
+    fun update(account: Account)
+    fun delete(account: Account)
 }

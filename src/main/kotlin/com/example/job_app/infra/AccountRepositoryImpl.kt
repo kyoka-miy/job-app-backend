@@ -48,6 +48,22 @@ class AccountRepositoryImpl(
             }
     }
 
+    override fun update(account: Account) {
+        jooq.update(ACCOUNTS)
+            .set(ACCOUNTS.REGISTERED_DATETIME, account.registeredDatetime)
+            .set(ACCOUNTS.EMAIL, account.email)
+            .set(ACCOUNTS.NAME, account.name)
+            .set(ACCOUNTS.ROLE, account.role.name)
+            .where(ACCOUNTS.ACCOUNT_ID.eq(account.accountId))
+            .execute()
+    }
+
+    override fun delete(account: Account) {
+        jooq.deleteFrom(ACCOUNTS)
+            .where(ACCOUNTS.ACCOUNT_ID.eq(account.accountId))
+            .execute()
+    }
+
     private fun recordToEntity(record: AccountsRecord): Account {
         return Account(
             accountId = record.accountId,

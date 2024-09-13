@@ -57,7 +57,7 @@ data class AccountCreateRequest(
     @field:Size(min = 6, max = 20, message = "Password must be between 6 and 20 characters")
     @field:Pattern(regexp = "[\\x21-\\x7E]+", message = "Password must contain only alphanumeric characters and symbols")
     val password: String,
-    val role: Role?
+    val role: String = "USER"
 )
 data class LoginRequest(
     @field:NotBlank(message = "required mail address")

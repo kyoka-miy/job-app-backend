@@ -20,18 +20,22 @@ class RegisterAccountUsecase(
         email: String,
         name: String,
         password: String,
-        role: Role?
+        role: String = "USER"
     ): String {
         if (accountRepository.findByEmail(email) != null) {
             throw UseCaseException(UseCaseErrorCodes.AccountRegister.emailDuplicate, "This email is already registered")
         }
-
+        val accountRole = when (role) {
+            "ADMIN" -> Role.ADMIN
+            "USER" -> Role.USER
+            else -> throw UseCaseException(UseCaseErrorCodes.AccountRegister.invalidRole, "Role is invalid")
+        }
         val account = Account(
             registeredDatetime = LocalDateTime.now(),
             email = email,
             _password = passwordEncoder.encode(password),
             name = name,
-            role = role ?: Role.USER
+            role = accountRole
         )
         accountRepository.insert(account)
         return jwtService.generateToken(account)
