@@ -1,4 +1,4 @@
-package com.example.job_app.infra
+package com.example.job_app.infra.account
 
 import com.example.job_app.domain.account.Account
 import com.example.job_app.domain.account.AccountRepository

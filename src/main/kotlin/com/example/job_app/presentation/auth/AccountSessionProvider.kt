@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class AccountSessionProvider {
+    // TODO make it return accountId
     fun getAccountSession(): String {
         try {
             val authentication = SecurityContextHolder.getContext().authentication

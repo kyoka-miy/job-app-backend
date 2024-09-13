@@ -16,7 +16,7 @@ class AuthUsecase(
 ) {
     fun execute(email: String, password: String): String {
         val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.Login.emailNotFound, "Email not found")
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
         try {
             authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(

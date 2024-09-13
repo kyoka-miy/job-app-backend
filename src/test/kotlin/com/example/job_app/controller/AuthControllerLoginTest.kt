@@ -119,7 +119,7 @@ internal class AuthControllerLoginTest(
             }
 
         response shouldEqualJson """{
-                | "errorCode": "login.emailNotFound",
+                | "errorCode": "idNotFound",
                 | "message": "Email not found"
                 |}
         """.trimMargin()

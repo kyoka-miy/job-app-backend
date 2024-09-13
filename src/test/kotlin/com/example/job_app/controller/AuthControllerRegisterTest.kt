@@ -57,8 +57,7 @@ internal class AuthControllerRegisterTest(
         val request = AccountCreateRequest(
             email = "test@mail.com",
             name = "username",
-            password = "password",
-            role = null
+            password = "password"
         )
         whenever(jwtService.generateToken(any())) doReturn "jwt-token"
         whenever(passwordEncoder.encode(any())) doReturn "encode-password"
@@ -99,8 +98,7 @@ internal class AuthControllerRegisterTest(
         val request = AccountCreateRequest(
             email = "test@mail.com",
             name = "username",
-            password = "password",
-            role = null
+            password = "password"
         )
         val response = mockMvc.perform(
             MockMvcRequestBuilders.post("/auth/register")
@@ -124,8 +122,7 @@ internal class AuthControllerRegisterTest(
         val request = AccountCreateRequest(
             email = "invalidmail",
             name = "username",
-            password = "password",
-            role = null
+            password = "password"
         )
         val response = mockMvc.perform(
             MockMvcRequestBuilders.post("/auth/register")

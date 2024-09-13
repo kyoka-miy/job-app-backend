@@ -11,7 +11,7 @@ class UpdateAccountNameUseCase(
 ) {
     fun execute(email: String, name: String) {
         val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.GetAccount.emailNotFound, "Email not found")
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
         account.name = name
         accountRepository.update(account)
     }

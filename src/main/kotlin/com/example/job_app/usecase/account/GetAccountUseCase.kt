@@ -12,7 +12,7 @@ class GetAccountUseCase(
 ) {
     fun execute(email: String): AccountDto {
         val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.GetAccount.emailNotFound, "Email not found")
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
         return AccountDto(
             accountId = account.accountId,
             email = account.email,
