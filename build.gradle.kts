@@ -1,5 +1,6 @@
 import org.flywaydb.gradle.task.FlywayInfoTask
 import org.flywaydb.gradle.task.FlywayMigrateTask
+import org.jooq.meta.jaxb.ForcedType
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
@@ -94,6 +95,12 @@ jooq {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
                         inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"
                         excludes = "flyway_schema_history"
+                        forcedTypes.add(
+                            ForcedType().apply {
+                                name = "BOOLEAN"
+                                includeTypes = "(?i:TINYINT\\(1\\))"
+                            }
+                        )
                     }
                     generate.apply {
                         isDeprecated = false
