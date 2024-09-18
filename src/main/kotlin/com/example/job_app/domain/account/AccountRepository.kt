@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository
 interface AccountRepository {
     fun insert(account: Account)
     fun findByEmail(email: String): Account?
+    fun fetch(accountId: String): Account?
     fun findAll(): List<AccountDto>
     fun update(account: Account)
     fun delete(account: Account)

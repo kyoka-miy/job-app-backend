@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component
 class DeleteAccountUseCase(
     private val accountRepository: AccountRepository
 ) {
-    fun execute(email: String) {
-        val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
+    fun execute(accountId: String) {
+        val account = accountRepository.fetch(accountId)
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Account not found")
         accountRepository.delete(account)
     }
 }

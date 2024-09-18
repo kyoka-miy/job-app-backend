@@ -12,9 +12,9 @@ class GetBoardsUseCase(
     private val boardRepository: BoardRepository,
     private val accountRepository: AccountRepository
 ) {
-    fun execute(email: String): List<Board> {
-        val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
+    fun execute(accountId: String): List<Board> {
+        val account = accountRepository.fetch(accountId)
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Account not found")
         return boardRepository.fetchByAccountId(account.accountId)
     }
 }

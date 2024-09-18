@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component
 class GetAccountUseCase(
     private val accountRepository: AccountRepository
 ) {
-    fun execute(email: String): AccountDto {
-        val account = accountRepository.findByEmail(email)
-            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Email not found")
+    fun execute(accountId: String): AccountDto {
+        val account = accountRepository.fetch(accountId)
+            ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Account not found")
         return AccountDto(
             accountId = account.accountId,
             email = account.email,

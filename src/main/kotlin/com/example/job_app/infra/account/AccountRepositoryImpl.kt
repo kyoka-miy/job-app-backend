@@ -39,6 +39,15 @@ class AccountRepositoryImpl(
             }
     }
 
+    override fun fetch(accountId: String): Account? {
+        return jooq.selectFrom(ACCOUNTS)
+            .where(ACCOUNTS.ACCOUNT_ID.eq(accountId))
+            .fetchOne()
+            ?.let {
+                recordToEntity(it)
+            }
+    }
+
     override fun findAll(): List<AccountDto> {
         return jooq.selectFrom(ACCOUNTS)
             .orderBy(ACCOUNTS.REGISTERED_DATETIME.desc())
