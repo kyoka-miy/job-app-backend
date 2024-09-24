@@ -74,7 +74,7 @@ class JobController(
         return getJobsUseCase.execute(boardId)
     }
 
-    @GetMapping("/boards/{boardId}/jobs")
+    @GetMapping("/boards/{boardId}/jobs/status")
     fun getJobsByStatus(
         @PathVariable("boardId") boardId: String,
         @RequestParam status: Status
