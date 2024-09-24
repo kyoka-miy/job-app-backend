@@ -27,9 +27,10 @@ class JobRepositoryImpl(
                 .set(Tables.JOBS.REMOTE, job.remote?.name)
                 .set(Tables.JOBS.DESCRIPTION, job.description)
                 .set(Tables.JOBS.STATUS, job.status.name)
-                .set(Tables.JOBS.APPLIED_DATE, job.appliedDate)
+                .set(Tables.JOBS.APPLIED_DATETIME, job.appliedDatetime)
                 .set(Tables.JOBS.JOB_BOARD, job.jobBoard)
                 .set(Tables.JOBS.NOTE, job.note)
+                .set(Tables.JOBS.ADDED_DATETIME, job.addedDatetime)
                 .set(Tables.JOBS.BOARD_ID, job.boardId)
                 .execute()
         } catch (e: Exception) {
@@ -57,9 +58,10 @@ class JobRepositoryImpl(
             .set(Tables.JOBS.REMOTE, job.remote?.name)
             .set(Tables.JOBS.DESCRIPTION, job.description)
             .set(Tables.JOBS.STATUS, job.status.name)
-            .set(Tables.JOBS.APPLIED_DATE, job.appliedDate)
+            .set(Tables.JOBS.APPLIED_DATETIME, job.appliedDatetime)
             .set(Tables.JOBS.JOB_BOARD, job.jobBoard)
             .set(Tables.JOBS.NOTE, job.note)
+            .set(Tables.JOBS.ADDED_DATETIME, job.addedDatetime)
             .set(Tables.JOBS.BOARD_ID, job.boardId)
             .where(Tables.JOBS.JOB_ID.eq(job.jobId))
             .execute()
@@ -74,6 +76,18 @@ class JobRepositoryImpl(
     override fun fetchByBoardId(boardId: String): List<Job> {
         return jooq.selectFrom(Tables.JOBS)
             .where(Tables.JOBS.BOARD_ID.eq(boardId))
+            .orderBy(Tables.JOBS.ADDED_DATETIME.desc())
+            .fetch()
+            .mapNotNull {
+                recordToEntity(it)
+            }
+    }
+
+    override fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job> {
+        return jooq.selectFrom(Tables.JOBS)
+            .where(Tables.JOBS.BOARD_ID.eq(boardId))
+            .and(Tables.JOBS.STATUS.eq(status.name))
+            .orderBy(Tables.JOBS.ADDED_DATETIME.desc())
             .fetch()
             .mapNotNull {
                 recordToEntity(it)
@@ -91,9 +105,10 @@ class JobRepositoryImpl(
             remote = record.remote?.let { Remote.valueOf(it) },
             description = record.description,
             status = Status.valueOf(record.status),
-            appliedDate = record.appliedDate,
+            appliedDatetime = record.appliedDatetime,
             jobBoard = record.jobBoard,
             note = record.note,
+            addedDatetime = record.addedDatetime,
             boardId = record.boardId
         )
     }

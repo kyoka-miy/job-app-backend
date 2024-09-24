@@ -6,4 +6,5 @@ interface JobRepository {
     fun update(job: Job)
     fun delete(jobId: String)
     fun fetchByBoardId(boardId: String): List<Job>
+    fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job>
 }

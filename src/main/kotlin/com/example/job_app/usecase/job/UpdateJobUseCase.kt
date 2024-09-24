@@ -1,7 +1,5 @@
 package com.example.job_app.usecase.job
 
-import com.example.job_app.domain.board.BoardRepository
-import com.example.job_app.domain.job.Job
 import com.example.job_app.domain.job.JobRepository
 import com.example.job_app.domain.job.Remote
 import com.example.job_app.domain.job.Status
@@ -9,6 +7,7 @@ import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.stereotype.Component
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Component
 class UpdateJobUseCase(
@@ -24,7 +23,7 @@ class UpdateJobUseCase(
         remote: Remote?,
         description: String?,
         status: Status,
-        appliedDate: LocalDate?,
+        appliedDateTime: LocalDateTime?,
         jobBoard: String?,
         note: String?
     ) {
@@ -37,7 +36,7 @@ class UpdateJobUseCase(
         job.remote = remote
         job.description = description
         job.status = status
-        job.appliedDate = appliedDate
+        job.appliedDatetime = appliedDateTime
         job.jobBoard = jobBoard
         job.note = note
         jobRepository.update(job)

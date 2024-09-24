@@ -9,6 +9,7 @@ import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.stereotype.Component
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Component
 class AddJobUseCase(
@@ -25,7 +26,7 @@ class AddJobUseCase(
         remote: Remote?,
         description: String?,
         status: Status,
-        appliedDate: LocalDate?,
+        appliedDateTime: LocalDateTime?,
         jobBoard: String?,
         note: String?
     ) {
@@ -40,9 +41,10 @@ class AddJobUseCase(
             remote = remote,
             description = description,
             status = status,
-            appliedDate = appliedDate,
+            appliedDatetime = appliedDateTime,
             jobBoard = jobBoard,
-            note = note
+            note = note,
+            addedDatetime = LocalDateTime.now()
         )
         jobRepository.insert(job)
     }

@@ -28,7 +28,7 @@ class SecurityConfig(
             }
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
             .exceptionHandling {
-                // Exception handling for authentication fail
+                // Exception handling for authentication failure
                 it.authenticationEntryPoint(authenticationEntryPoint)
             }
             .csrf { it.disable() }

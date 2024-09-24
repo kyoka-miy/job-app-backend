@@ -1,7 +1,7 @@
 package com.example.job_app.domain.job
 
 import com.example.job_app.domain.shared.IdGenerator
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class Job(
     val jobId: String = IdGenerator.generate(),
@@ -13,9 +13,10 @@ data class Job(
     var remote: Remote?,
     var description: String?,
     var status: Status,
-    var appliedDate: LocalDate?,
+    var appliedDatetime: LocalDateTime?,
     var jobBoard: String?,
     var note: String?,
+    val addedDatetime: LocalDateTime,
     val boardId: String
 )
 
