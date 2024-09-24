@@ -29,7 +29,7 @@ class AddJobUseCase(
         jobBoard: String?,
         note: String?
     ) {
-        if(boardRepository.fetch(boardId) == null) throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "BoardId not found")
+        if (boardRepository.fetch(boardId) == null) throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "BoardId not found")
         val job = Job(
             boardId = boardId,
             jobTitle = jobTitle,

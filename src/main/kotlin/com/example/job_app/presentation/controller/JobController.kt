@@ -24,7 +24,8 @@ class JobController(
     @PostMapping("/boards/{boardId}")
     fun addJob(
         @PathVariable("boardId") boardId: String,
-        @RequestBody @Validated request: AddOrUpdateJobRequest
+        @RequestBody @Validated
+        request: AddOrUpdateJobRequest
     ) {
         addJobUseCase.execute(
             boardId,
@@ -45,7 +46,8 @@ class JobController(
     @PutMapping("/{jobId}")
     fun updateJob(
         @PathVariable("jobId") jobId: String,
-        @RequestBody @Validated request: AddOrUpdateJobRequest
+        @RequestBody @Validated
+        request: AddOrUpdateJobRequest
     ) {
         updateJobUseCase.execute(
             jobId,
@@ -76,7 +78,7 @@ class JobController(
     }
 }
 
-data class AddOrUpdateJobRequest (
+data class AddOrUpdateJobRequest(
     @field:NotBlank(message = "jobTitle cannot be blank")
     val jobTitle: String,
     @field:NotBlank(message = "companyName cannot be blank")
@@ -90,5 +92,5 @@ data class AddOrUpdateJobRequest (
     val status: Status,
     val appliedDate: LocalDate?,
     val jobBoard: String?,
-    val note: String?,
+    val note: String?
 )

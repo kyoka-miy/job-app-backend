@@ -3,7 +3,7 @@ package com.example.job_app.domain.job
 import com.example.job_app.domain.shared.IdGenerator
 import java.time.LocalDate
 
-data class Job (
+data class Job(
     val jobId: String = IdGenerator.generate(),
     var jobTitle: String,
     var companyName: String,
@@ -19,10 +19,10 @@ data class Job (
     val boardId: String
 )
 
-enum class Remote{
+enum class Remote {
     REMOTE, ON_SITE, HYBRID
 }
 
-enum class Status{
+enum class Status {
     APPLIED, INTERVIEW, OFFER, REJECTED, WISH_LIST, OFFER_ACCEPTED
 }

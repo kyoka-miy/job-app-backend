@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component
 @Component
 class JobRepositoryImpl(
     private val jooq: DSLContext
-): JobRepository {
+) : JobRepository {
     override fun insert(job: Job) {
         try {
             jooq.insertInto(Tables.JOBS)

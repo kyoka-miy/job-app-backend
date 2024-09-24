@@ -12,7 +12,7 @@ import java.time.LocalDate
 
 @Component
 class UpdateJobUseCase(
-    private val jobRepository: JobRepository,
+    private val jobRepository: JobRepository
 ) {
     fun execute(
         jobId: String,
