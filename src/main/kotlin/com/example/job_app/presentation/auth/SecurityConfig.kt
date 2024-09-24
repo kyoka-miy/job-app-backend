@@ -12,7 +12,8 @@ import org.springframework.security.web.authentication.logout.LogoutHandler
 @Configuration
 @EnableWebSecurity
 class SecurityConfig(
-    private val jwtAuthFilter: JwtAuthFilter
+    private val jwtAuthFilter: JwtAuthFilter,
+    private val authenticationEntryPoint: CustomAuthenticationEntryPoint
 ) {
     @Bean
     fun configureHttpSecurity(http: HttpSecurity): SecurityFilterChain {
@@ -26,6 +27,10 @@ class SecurityConfig(
                     .anyRequest().authenticated()
             }
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .exceptionHandling {
+                // Exception handling for authentication fail
+                it.authenticationEntryPoint(authenticationEntryPoint)
+            }
             .csrf { it.disable() }
         return http.build()
     }

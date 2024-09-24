@@ -5,10 +5,7 @@ import com.example.job_app.usecase.account.RegisterAccountUsecase
 import com.example.job_app.usecase.auth.AuthUsecase
 import com.example.job_app.usecase.logout.LogoutService
 import jakarta.servlet.http.HttpServletRequest
-import jakarta.validation.constraints.Email
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Pattern
-import jakarta.validation.constraints.Size
+import jakarta.validation.constraints.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
