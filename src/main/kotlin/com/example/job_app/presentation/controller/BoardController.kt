@@ -7,6 +7,7 @@ import com.example.job_app.usecase.board.DeleteBoardUseCase
 import com.example.job_app.usecase.board.GetBoardsUseCase
 import com.example.job_app.usecase.board.UpdateBoardUseCase
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotNull
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -49,5 +50,6 @@ class BoardController(
 
 data class AddOrUpdateBoardRequest(
     @field:NotBlank
+    @field:NotNull
     val name: String
 )
