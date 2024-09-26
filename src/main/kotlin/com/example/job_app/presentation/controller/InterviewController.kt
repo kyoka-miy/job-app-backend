@@ -1,7 +1,6 @@
 package com.example.job_app.presentation.controller
 
 import com.example.job_app.domain.interview.Interview
-import com.example.job_app.domain.interview.InterviewStage
 import com.example.job_app.usecase.interview.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
@@ -41,7 +40,7 @@ class InterviewController(
         updateInterviewUseCase.execute(interviewId, request.interviewDateTime, request.stage, request.type, request.note)
     }
 
-    @PutMapping("/{interviewId}/inactivate")
+    @PutMapping("/{interviewId}/inactivate") // when the interview finished
     fun inactivateInterview(
         @PathVariable("interviewId") interviewId: String
     ) {
@@ -60,7 +59,7 @@ data class AddOrUpdateInterviewRequest(
     @field:NotNull
     val interviewDateTime: LocalDateTime,
     @field:NotNull
-    val stage: InterviewStage,
+    val stage: String,
     @field:NotBlank
     val type: String,
     val note: String?

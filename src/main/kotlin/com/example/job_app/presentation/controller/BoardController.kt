@@ -50,6 +50,5 @@ class BoardController(
 
 data class AddOrUpdateBoardRequest(
     @field:NotBlank
-    @field:NotNull
     val name: String
 )

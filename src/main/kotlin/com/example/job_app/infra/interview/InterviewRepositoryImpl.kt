@@ -2,7 +2,6 @@ package com.example.job_app.infra.interview
 
 import com.example.job_app.domain.interview.Interview
 import com.example.job_app.domain.interview.InterviewRepository
-import com.example.job_app.domain.interview.InterviewStage
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
 import com.example.ktknowledgeTodo.infra.jooq.Tables
@@ -19,11 +18,12 @@ class InterviewRepositoryImpl(
             jooq.insertInto(Tables.INTERVIEWS)
                 .set(Tables.INTERVIEWS.INTERVIEW_ID, interview.interviewId)
                 .set(Tables.INTERVIEWS.INTERVIEW_DATETIME, interview.interviewDateTime)
-                .set(Tables.INTERVIEWS.STAGE, interview.stage.name)
+                .set(Tables.INTERVIEWS.STAGE, interview.stage)
                 .set(Tables.INTERVIEWS.TYPE, interview.type)
                 .set(Tables.INTERVIEWS.NOTE, interview.note)
                 .set(Tables.INTERVIEWS.ACTIVE, interview.active)
                 .set(Tables.INTERVIEWS.JOB_ID, interview.jobId)
+                .set(Tables.INTERVIEWS.ACTIVITY_ID, interview.activityId)
                 .execute()
         } catch (e: Exception) {
             throw DomainException(DomainErrorCodes.Common.duplicate, "Duplicate key")
@@ -48,7 +48,7 @@ class InterviewRepositoryImpl(
     override fun update(interview: Interview) {
         jooq.update(Tables.INTERVIEWS)
             .set(Tables.INTERVIEWS.INTERVIEW_DATETIME, interview.interviewDateTime)
-            .set(Tables.INTERVIEWS.STAGE, interview.stage.name)
+            .set(Tables.INTERVIEWS.STAGE, interview.stage)
             .set(Tables.INTERVIEWS.TYPE, interview.type)
             .set(Tables.INTERVIEWS.NOTE, interview.note)
             .set(Tables.INTERVIEWS.ACTIVE, interview.active)
@@ -68,11 +68,12 @@ class InterviewRepositoryImpl(
         return Interview(
             interviewId = record.interviewId,
             interviewDateTime = record.interviewDatetime,
-            stage = InterviewStage.valueOf(record.stage),
+            stage = record.stage,
             type = record.type,
             note = record.note,
             active = record.active,
-            jobId = record.jobId
+            jobId = record.jobId,
+            activityId = record.activityId
         )
     }
 }

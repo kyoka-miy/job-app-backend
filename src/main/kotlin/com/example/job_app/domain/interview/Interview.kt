@@ -6,17 +6,10 @@ import java.time.LocalDateTime
 data class Interview(
     val interviewId: String = IdGenerator.generate(),
     var interviewDateTime: LocalDateTime,
-    var stage: InterviewStage,
+    var stage: String,
     var type: String,
     var note: String?,
     var active: Boolean,
-    val jobId: String
+    val jobId: String,
+    val activityId: String
 )
-
-enum class InterviewStage {
-    PHONE_SCREENING,
-    FIRST_INTERVIEW,
-    SECOND_INTERVIEW,
-    THIRD_INTERVIEW,
-    FINAL_INTERVIEW
-}
