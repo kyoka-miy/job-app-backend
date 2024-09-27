@@ -5,9 +5,9 @@ import com.example.job_app.domain.account.AccountRepository
 import com.example.job_app.domain.account.Role
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
+import com.example.job_app.infra.jooq.Tables.ACCOUNTS
+import com.example.job_app.infra.jooq.tables.records.AccountsRecord
 import com.example.job_app.presentation.controller.AccountDto
-import com.example.ktknowledgeTodo.infra.jooq.Tables.ACCOUNTS
-import com.example.ktknowledgeTodo.infra.jooq.tables.records.AccountsRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
 

@@ -4,10 +4,9 @@ import com.example.job_app.domain.activity.Activity
 import com.example.job_app.domain.activity.ActivityRepository
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
-import com.example.ktknowledgeTodo.infra.jooq.Tables
-import com.example.ktknowledgeTodo.infra.jooq.tables.records.ActivitiesRecord
+import com.example.job_app.infra.jooq.Tables
+import com.example.job_app.infra.jooq.tables.records.ActivitiesRecord
 import org.jooq.DSLContext
-import org.jooq.Table
 import org.springframework.stereotype.Component
 
 @Component

@@ -2,8 +2,8 @@ package com.example.job_app.infra.job_list
 
 import com.example.job_app.domain.job_list.JobList
 import com.example.job_app.domain.job_list.JobListRepository
-import com.example.ktknowledgeTodo.infra.jooq.Tables
-import com.example.ktknowledgeTodo.infra.jooq.tables.records.JobListsRecord
+import com.example.job_app.infra.jooq.Tables
+import com.example.job_app.infra.jooq.tables.records.JobListsRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
 

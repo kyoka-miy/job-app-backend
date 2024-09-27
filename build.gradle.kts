@@ -107,7 +107,7 @@ jooq {
                         isTables = true
                     }
                     target.apply {
-                        packageName = "com.example.ktknowledgeTodo.infra.jooq"
+                        packageName = "com.example.job_app.infra.jooq"
                         directory = layout.buildDirectory.dir("generated/source/jooq/main").get().toString()
                     }
                 }

@@ -6,8 +6,8 @@ import com.example.job_app.domain.job.Remote
 import com.example.job_app.domain.job.Status
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
-import com.example.ktknowledgeTodo.infra.jooq.Tables
-import com.example.ktknowledgeTodo.infra.jooq.tables.records.JobsRecord
+import com.example.job_app.infra.jooq.Tables
+import com.example.job_app.infra.jooq.tables.records.JobsRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
 
