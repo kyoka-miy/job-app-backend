@@ -127,5 +127,9 @@ tasks.withType<Test> {
 }
 
 tasks.withType<BootJar> {
-    archiveFileName.set("job-app.jar")
+//    archiveFileName.set("job-app.jar")
+    enabled = false
+}
+tasks.withType<Jar> {
+    enabled = true
 }
