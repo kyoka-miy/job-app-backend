@@ -27,3 +27,11 @@ jobs:
       run: ./gradlew build
     - name: Run tests
       run: ./gradlew test
+        # Heroku CLIをセットアップ
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}     # Heroku API Key from GitHub Secrets
+        heroku_app_name: "radiant-tor-04984"              # Your Heroku app name
+        heroku_email: "kyoka.miyamura21@gmail.com"        # Your Heroku account email
+        project_path: "./app/build/libs/*.jar"            # Path to the built JAR file
