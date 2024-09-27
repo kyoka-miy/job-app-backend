@@ -74,10 +74,32 @@ ktlint {
     }
 }
 
+sourceSets {
+    main {
+        java.setSrcDirs(
+            listOf(
+                "src/main/migration_kotlin",
+                "src/main/kotlin",
+            )
+        )
+        resources.setSrcDirs(
+            listOf(
+                "src/main/resources",
+            )
+        )
+    }
+}
+
 flyway {
     url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
+}
+
+gradle.taskGraph.whenReady {
+    if (hasTask(tasks["flywayMigrate"]) || hasTask(tasks["flywayInfo"]) || hasTask(tasks["ktlintFormat"])) {
+        tasks["generateJooq"].enabled = false
+    }
 }
 
 jooq {
@@ -129,6 +151,4 @@ tasks.withType<Test> {
 tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
-tasks.named("generateJooq") {
-    enabled = project.hasProperty("generateJooq")
-}
+
