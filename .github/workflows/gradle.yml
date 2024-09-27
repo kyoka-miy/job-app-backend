@@ -32,6 +32,6 @@ jobs:
     - name: Deploy to Heroku
       run: |
         heroku plugins:install java@3.1.1
-        heroku deploy:jar ./app/build/libs/*.jar --app radiant-tor-04984
+        heroku deploy:jar ./build/libs/*.jar --app radiant-tor-04984
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
