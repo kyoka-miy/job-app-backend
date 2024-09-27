@@ -129,3 +129,6 @@ tasks.withType<Test> {
 tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
+tasks.named("generateJooq") {
+    enabled = project.hasProperty("generateJooq")
+}
