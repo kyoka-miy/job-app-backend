@@ -74,32 +74,10 @@ ktlint {
     }
 }
 
-sourceSets {
-    main {
-        java.setSrcDirs(
-            listOf(
-                "src/main/migration_kotlin",
-                "src/main/kotlin",
-            )
-        )
-        resources.setSrcDirs(
-            listOf(
-                "src/main/resources",
-            )
-        )
-    }
-}
-
 flyway {
     url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
-}
-
-gradle.taskGraph.whenReady {
-    if (hasTask(tasks["flywayMigrate"]) || hasTask(tasks["flywayInfo"]) || hasTask(tasks["ktlintFormat"])) {
-        tasks["generateJooq"].enabled = false
-    }
 }
 
 jooq {
@@ -107,15 +85,15 @@ jooq {
         create("main") {
             jooqConfiguration.apply {
                 jdbc.apply {
-                    url = "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
-                    user = "user"
-                    password = "password"
+                    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+                    user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
+                    password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
                 }
                 generator.apply {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
-                        inputSchema = "job_app"
+                        inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"
                         excludes = "flyway_schema_history"
                         forcedTypes.add(
                             ForcedType().apply {
@@ -152,6 +130,3 @@ tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
 
-tasks.named("generateJooq") {
-    enabled = project.hasProperty("generateJooq")
-}
