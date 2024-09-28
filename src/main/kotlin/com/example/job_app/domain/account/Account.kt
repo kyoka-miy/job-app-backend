@@ -12,7 +12,7 @@ data class Account(
     val email: String,
     val _password: String,
     var name: String,
-    val role: Role
+    val role: Role //push test
 ) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> {
         return listOf(SimpleGrantedAuthority("ROLE_${role.name}"))
