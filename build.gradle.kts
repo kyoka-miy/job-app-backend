@@ -91,7 +91,7 @@ jooq {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
-                        inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "cqq2l0ixquavsq6l"
+                        inputSchema = "cqq2l0ixquavsq6l"
                         excludes = "flyway_schema_history"
                         forcedTypes.add(
                             ForcedType().apply {
