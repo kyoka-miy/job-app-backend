@@ -126,10 +126,9 @@ tasks.withType<Test> {
 
 tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
-}
-tasks.withType<BootJar> {
     doLast {
-        println("-------------------------------------------------------------------------------")
-        println("JAR generated at: ${archiveFileName.get()}")
+        logger.lifecycle("-------------------------------------------------------------------------------")
+        logger.lifecycle("JAR generated at: ${archiveFileName.get()}")
+        logger.lifecycle("-------------------------------------------------------------------------------")
     }
 }
