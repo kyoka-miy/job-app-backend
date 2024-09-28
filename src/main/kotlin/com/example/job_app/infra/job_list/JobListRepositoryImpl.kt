@@ -16,7 +16,6 @@ class JobListRepositoryImpl(
             .fetch()
             .map {
                 recordToEntity(it)
-                // test
             }
     }
 
