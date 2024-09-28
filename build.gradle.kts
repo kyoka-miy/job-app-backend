@@ -129,3 +129,4 @@ tasks.withType<Test> {
 tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
+
