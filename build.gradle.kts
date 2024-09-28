@@ -128,6 +128,14 @@ tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
 
+tasks.named("bootRun") {
+    dependsOn("flywayMigrate")
+}
+
+tasks.named("build") {
+    dependsOn("flywayMigrate")
+}
+
 val isHeroku = System.getenv("HEROKU") != null
 
 tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
