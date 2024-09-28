@@ -24,196 +24,196 @@ public class JobsRecord extends UpdatableRecordImpl<JobsRecord> implements Recor
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.jobs.job_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.job_id</code>.
      */
     public void setJobId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.job_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.job_id</code>.
      */
     public String getJobId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.jobs.job_title</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.job_title</code>.
      */
     public void setJobTitle(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.job_title</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.job_title</code>.
      */
     public String getJobTitle() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>job_app.jobs.company_name</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.company_name</code>.
      */
     public void setCompanyName(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.company_name</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.company_name</code>.
      */
     public String getCompanyName() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>job_app.jobs.url</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.url</code>.
      */
     public void setUrl(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.url</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.url</code>.
      */
     public String getUrl() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>job_app.jobs.location</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.location</code>.
      */
     public void setLocation(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.location</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.location</code>.
      */
     public String getLocation() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>job_app.jobs.salary</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.salary</code>.
      */
     public void setSalary(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.salary</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.salary</code>.
      */
     public String getSalary() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>job_app.jobs.remote</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.remote</code>.
      */
     public void setRemote(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.remote</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.remote</code>.
      */
     public String getRemote() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>job_app.jobs.description</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.description</code>.
      */
     public void setDescription(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.description</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.description</code>.
      */
     public String getDescription() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>job_app.jobs.status</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.status</code>.
      */
     public void setStatus(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.status</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.status</code>.
      */
     public String getStatus() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>job_app.jobs.applied_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.applied_datetime</code>.
      */
     public void setAppliedDatetime(LocalDateTime value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.applied_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.applied_datetime</code>.
      */
     public LocalDateTime getAppliedDatetime() {
         return (LocalDateTime) get(9);
     }
 
     /**
-     * Setter for <code>job_app.jobs.job_board</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.job_board</code>.
      */
     public void setJobBoard(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.job_board</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.job_board</code>.
      */
     public String getJobBoard() {
         return (String) get(10);
     }
 
     /**
-     * Setter for <code>job_app.jobs.note</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.note</code>.
      */
     public void setNote(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.note</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.note</code>.
      */
     public String getNote() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>job_app.jobs.board_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.board_id</code>.
      */
     public void setBoardId(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.board_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.board_id</code>.
      */
     public String getBoardId() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>job_app.jobs.added_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.jobs.added_datetime</code>.
      */
     public void setAddedDatetime(LocalDateTime value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>job_app.jobs.added_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.jobs.added_datetime</code>.
      */
     public LocalDateTime getAddedDatetime() {
         return (LocalDateTime) get(13);

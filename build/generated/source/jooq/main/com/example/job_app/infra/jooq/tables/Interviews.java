@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.InterviewsRecord;
 
@@ -36,7 +36,7 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.interviews</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.interviews</code>
      */
     public static final Interviews INTERVIEWS = new Interviews();
 
@@ -49,42 +49,42 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     }
 
     /**
-     * The column <code>job_app.interviews.interview_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.interview_id</code>.
      */
     public final TableField<InterviewsRecord, String> INTERVIEW_ID = createField(DSL.name("interview_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.interview_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.interview_datetime</code>.
      */
     public final TableField<InterviewsRecord, LocalDateTime> INTERVIEW_DATETIME = createField(DSL.name("interview_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.stage</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.stage</code>.
      */
     public final TableField<InterviewsRecord, String> STAGE = createField(DSL.name("stage"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.type</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.type</code>.
      */
     public final TableField<InterviewsRecord, String> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.note</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.note</code>.
      */
     public final TableField<InterviewsRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>job_app.interviews.active</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.active</code>.
      */
     public final TableField<InterviewsRecord, Boolean> ACTIVE = createField(DSL.name("active"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.job_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.job_id</code>.
      */
     public final TableField<InterviewsRecord, String> JOB_ID = createField(DSL.name("job_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.interviews.activity_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.activity_id</code>.
      */
     public final TableField<InterviewsRecord, String> ACTIVITY_ID = createField(DSL.name("activity_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
@@ -97,21 +97,23 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.interviews</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.interviews</code> table
+     * reference
      */
     public Interviews(String alias) {
         this(DSL.name(alias), INTERVIEWS);
     }
 
     /**
-     * Create an aliased <code>job_app.interviews</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.interviews</code> table
+     * reference
      */
     public Interviews(Name alias) {
         this(alias, INTERVIEWS);
     }
 
     /**
-     * Create a <code>job_app.interviews</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.interviews</code> table reference
      */
     public Interviews() {
         this(DSL.name("interviews"), null);
@@ -123,7 +125,7 @@ public class Interviews extends TableImpl<InterviewsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override
@@ -140,7 +142,8 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     private transient Activities _activities;
 
     /**
-     * Get the implicit join path to the <code>job_app.jobs</code> table.
+     * Get the implicit join path to the <code>cqq2l0ixquavsq6l.jobs</code>
+     * table.
      */
     public Jobs jobs() {
         if (_jobs == null)
@@ -150,7 +153,8 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     }
 
     /**
-     * Get the implicit join path to the <code>job_app.activities</code> table.
+     * Get the implicit join path to the
+     * <code>cqq2l0ixquavsq6l.activities</code> table.
      */
     public Activities activities() {
         if (_activities == null)

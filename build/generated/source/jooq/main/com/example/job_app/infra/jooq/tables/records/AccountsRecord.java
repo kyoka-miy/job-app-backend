@@ -24,84 +24,84 @@ public class AccountsRecord extends UpdatableRecordImpl<AccountsRecord> implemen
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.accounts.account_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.account_id</code>.
      */
     public void setAccountId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.account_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.account_id</code>.
      */
     public String getAccountId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.accounts.registered_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.registered_datetime</code>.
      */
     public void setRegisteredDatetime(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.registered_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.registered_datetime</code>.
      */
     public LocalDateTime getRegisteredDatetime() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>job_app.accounts.email</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.email</code>.
      */
     public void setEmail(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.email</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.email</code>.
      */
     public String getEmail() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>job_app.accounts.password</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.password</code>.
      */
     public void setPassword(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.password</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.password</code>.
      */
     public String getPassword() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>job_app.accounts.name</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.name</code>.
      */
     public void setName(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.name</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.name</code>.
      */
     public String getName() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>job_app.accounts.role</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.accounts.role</code>.
      */
     public void setRole(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>job_app.accounts.role</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.accounts.role</code>.
      */
     public String getRole() {
         return (String) get(5);

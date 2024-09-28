@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.AccountsRecord;
 
@@ -36,7 +36,7 @@ public class Accounts extends TableImpl<AccountsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.accounts</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.accounts</code>
      */
     public static final Accounts ACCOUNTS = new Accounts();
 
@@ -49,32 +49,32 @@ public class Accounts extends TableImpl<AccountsRecord> {
     }
 
     /**
-     * The column <code>job_app.accounts.account_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.account_id</code>.
      */
     public final TableField<AccountsRecord, String> ACCOUNT_ID = createField(DSL.name("account_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.accounts.registered_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.registered_datetime</code>.
      */
     public final TableField<AccountsRecord, LocalDateTime> REGISTERED_DATETIME = createField(DSL.name("registered_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.accounts.email</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.email</code>.
      */
     public final TableField<AccountsRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.accounts.password</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.password</code>.
      */
     public final TableField<AccountsRecord, String> PASSWORD = createField(DSL.name("password"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.accounts.name</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.name</code>.
      */
     public final TableField<AccountsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.accounts.role</code>.
+     * The column <code>cqq2l0ixquavsq6l.accounts.role</code>.
      */
     public final TableField<AccountsRecord, String> ROLE = createField(DSL.name("role"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
@@ -87,21 +87,21 @@ public class Accounts extends TableImpl<AccountsRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.accounts</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.accounts</code> table reference
      */
     public Accounts(String alias) {
         this(DSL.name(alias), ACCOUNTS);
     }
 
     /**
-     * Create an aliased <code>job_app.accounts</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.accounts</code> table reference
      */
     public Accounts(Name alias) {
         this(alias, ACCOUNTS);
     }
 
     /**
-     * Create a <code>job_app.accounts</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.accounts</code> table reference
      */
     public Accounts() {
         this(DSL.name("accounts"), null);
@@ -113,7 +113,7 @@ public class Accounts extends TableImpl<AccountsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override

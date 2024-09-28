@@ -24,70 +24,70 @@ public class ActivitiesRecord extends UpdatableRecordImpl<ActivitiesRecord> impl
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.activities.activity_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.activities.activity_id</code>.
      */
     public void setActivityId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.activities.activity_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.activities.activity_id</code>.
      */
     public String getActivityId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.activities.name</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.activities.name</code>.
      */
     public void setName(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.activities.name</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.activities.name</code>.
      */
     public String getName() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>job_app.activities.activity_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.activities.activity_datetime</code>.
      */
     public void setActivityDatetime(LocalDateTime value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>job_app.activities.activity_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.activities.activity_datetime</code>.
      */
     public LocalDateTime getActivityDatetime() {
         return (LocalDateTime) get(2);
     }
 
     /**
-     * Setter for <code>job_app.activities.deleted</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.activities.deleted</code>.
      */
     public void setDeleted(Boolean value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>job_app.activities.deleted</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.activities.deleted</code>.
      */
     public Boolean getDeleted() {
         return (Boolean) get(3);
     }
 
     /**
-     * Setter for <code>job_app.activities.job_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.activities.job_id</code>.
      */
     public void setJobId(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>job_app.activities.job_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.activities.job_id</code>.
      */
     public String getJobId() {
         return (String) get(4);

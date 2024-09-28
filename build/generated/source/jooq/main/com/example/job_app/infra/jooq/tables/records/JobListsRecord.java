@@ -22,28 +22,28 @@ public class JobListsRecord extends UpdatableRecordImpl<JobListsRecord> implemen
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.job_lists.job_list_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.job_lists.job_list_id</code>.
      */
     public void setJobListId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.job_lists.job_list_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.job_lists.job_list_id</code>.
      */
     public String getJobListId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.job_lists.active</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.job_lists.active</code>.
      */
     public void setActive(Boolean value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.job_lists.active</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.job_lists.active</code>.
      */
     public Boolean getActive() {
         return (Boolean) get(1);

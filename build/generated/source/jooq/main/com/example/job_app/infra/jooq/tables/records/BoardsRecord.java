@@ -24,56 +24,56 @@ public class BoardsRecord extends UpdatableRecordImpl<BoardsRecord> implements R
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.boards.board_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.boards.board_id</code>.
      */
     public void setBoardId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.boards.board_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.boards.board_id</code>.
      */
     public String getBoardId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.boards.created_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.boards.created_datetime</code>.
      */
     public void setCreatedDatetime(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.boards.created_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.boards.created_datetime</code>.
      */
     public LocalDateTime getCreatedDatetime() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>job_app.boards.name</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.boards.name</code>.
      */
     public void setName(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>job_app.boards.name</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.boards.name</code>.
      */
     public String getName() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>job_app.boards.account_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.boards.account_id</code>.
      */
     public void setAccountId(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>job_app.boards.account_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.boards.account_id</code>.
      */
     public String getAccountId() {
         return (String) get(3);

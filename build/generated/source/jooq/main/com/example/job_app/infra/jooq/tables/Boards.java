@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.BoardsRecord;
 
@@ -36,7 +36,7 @@ public class Boards extends TableImpl<BoardsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.boards</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.boards</code>
      */
     public static final Boards BOARDS = new Boards();
 
@@ -49,22 +49,22 @@ public class Boards extends TableImpl<BoardsRecord> {
     }
 
     /**
-     * The column <code>job_app.boards.board_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.boards.board_id</code>.
      */
     public final TableField<BoardsRecord, String> BOARD_ID = createField(DSL.name("board_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.boards.created_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.boards.created_datetime</code>.
      */
     public final TableField<BoardsRecord, LocalDateTime> CREATED_DATETIME = createField(DSL.name("created_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.boards.name</code>.
+     * The column <code>cqq2l0ixquavsq6l.boards.name</code>.
      */
     public final TableField<BoardsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.boards.account_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.boards.account_id</code>.
      */
     public final TableField<BoardsRecord, String> ACCOUNT_ID = createField(DSL.name("account_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
@@ -77,21 +77,21 @@ public class Boards extends TableImpl<BoardsRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.boards</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.boards</code> table reference
      */
     public Boards(String alias) {
         this(DSL.name(alias), BOARDS);
     }
 
     /**
-     * Create an aliased <code>job_app.boards</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.boards</code> table reference
      */
     public Boards(Name alias) {
         this(alias, BOARDS);
     }
 
     /**
-     * Create a <code>job_app.boards</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.boards</code> table reference
      */
     public Boards() {
         this(DSL.name("boards"), null);
@@ -103,7 +103,7 @@ public class Boards extends TableImpl<BoardsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override
@@ -119,7 +119,8 @@ public class Boards extends TableImpl<BoardsRecord> {
     private transient Accounts _accounts;
 
     /**
-     * Get the implicit join path to the <code>job_app.accounts</code> table.
+     * Get the implicit join path to the <code>cqq2l0ixquavsq6l.accounts</code>
+     * table.
      */
     public Accounts accounts() {
         if (_accounts == null)

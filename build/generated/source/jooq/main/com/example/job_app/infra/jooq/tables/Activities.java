@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.ActivitiesRecord;
 
@@ -36,7 +36,7 @@ public class Activities extends TableImpl<ActivitiesRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.activities</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.activities</code>
      */
     public static final Activities ACTIVITIES = new Activities();
 
@@ -49,27 +49,27 @@ public class Activities extends TableImpl<ActivitiesRecord> {
     }
 
     /**
-     * The column <code>job_app.activities.activity_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.activities.activity_id</code>.
      */
     public final TableField<ActivitiesRecord, String> ACTIVITY_ID = createField(DSL.name("activity_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.activities.name</code>.
+     * The column <code>cqq2l0ixquavsq6l.activities.name</code>.
      */
     public final TableField<ActivitiesRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.activities.activity_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.activities.activity_datetime</code>.
      */
     public final TableField<ActivitiesRecord, LocalDateTime> ACTIVITY_DATETIME = createField(DSL.name("activity_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.activities.deleted</code>.
+     * The column <code>cqq2l0ixquavsq6l.activities.deleted</code>.
      */
     public final TableField<ActivitiesRecord, Boolean> DELETED = createField(DSL.name("deleted"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
-     * The column <code>job_app.activities.job_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.activities.job_id</code>.
      */
     public final TableField<ActivitiesRecord, String> JOB_ID = createField(DSL.name("job_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
@@ -82,21 +82,23 @@ public class Activities extends TableImpl<ActivitiesRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.activities</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.activities</code> table
+     * reference
      */
     public Activities(String alias) {
         this(DSL.name(alias), ACTIVITIES);
     }
 
     /**
-     * Create an aliased <code>job_app.activities</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.activities</code> table
+     * reference
      */
     public Activities(Name alias) {
         this(alias, ACTIVITIES);
     }
 
     /**
-     * Create a <code>job_app.activities</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.activities</code> table reference
      */
     public Activities() {
         this(DSL.name("activities"), null);
@@ -108,7 +110,7 @@ public class Activities extends TableImpl<ActivitiesRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override
@@ -124,7 +126,8 @@ public class Activities extends TableImpl<ActivitiesRecord> {
     private transient Jobs _jobs;
 
     /**
-     * Get the implicit join path to the <code>job_app.jobs</code> table.
+     * Get the implicit join path to the <code>cqq2l0ixquavsq6l.jobs</code>
+     * table.
      */
     public Jobs jobs() {
         if (_jobs == null)

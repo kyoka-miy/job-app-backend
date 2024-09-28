@@ -26,9 +26,9 @@ public class DefaultCatalog extends CatalogImpl {
     public static final DefaultCatalog DEFAULT_CATALOG = new DefaultCatalog();
 
     /**
-     * The schema <code>job_app</code>.
+     * The schema <code>cqq2l0ixquavsq6l</code>.
      */
-    public final JobApp JOB_APP = JobApp.JOB_APP;
+    public final Cqq2l0ixquavsq6l CQQ2L0IXQUAVSQ6L = Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
 
     /**
      * No further instances allowed
@@ -40,7 +40,7 @@ public class DefaultCatalog extends CatalogImpl {
     @Override
     public final List<Schema> getSchemas() {
         return Arrays.asList(
-            JobApp.JOB_APP
+            Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L
         );
     }
 

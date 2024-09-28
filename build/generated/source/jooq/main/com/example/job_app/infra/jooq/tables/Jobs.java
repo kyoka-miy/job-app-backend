@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.JobsRecord;
 
@@ -36,7 +36,7 @@ public class Jobs extends TableImpl<JobsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.jobs</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.jobs</code>
      */
     public static final Jobs JOBS = new Jobs();
 
@@ -49,72 +49,72 @@ public class Jobs extends TableImpl<JobsRecord> {
     }
 
     /**
-     * The column <code>job_app.jobs.job_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.job_id</code>.
      */
     public final TableField<JobsRecord, String> JOB_ID = createField(DSL.name("job_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.jobs.job_title</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.job_title</code>.
      */
     public final TableField<JobsRecord, String> JOB_TITLE = createField(DSL.name("job_title"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.jobs.company_name</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.company_name</code>.
      */
     public final TableField<JobsRecord, String> COMPANY_NAME = createField(DSL.name("company_name"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.jobs.url</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.url</code>.
      */
     public final TableField<JobsRecord, String> URL = createField(DSL.name("url"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>job_app.jobs.location</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.location</code>.
      */
     public final TableField<JobsRecord, String> LOCATION = createField(DSL.name("location"), SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>job_app.jobs.salary</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.salary</code>.
      */
     public final TableField<JobsRecord, String> SALARY = createField(DSL.name("salary"), SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>job_app.jobs.remote</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.remote</code>.
      */
     public final TableField<JobsRecord, String> REMOTE = createField(DSL.name("remote"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>job_app.jobs.description</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.description</code>.
      */
     public final TableField<JobsRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>job_app.jobs.status</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.status</code>.
      */
     public final TableField<JobsRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.jobs.applied_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.applied_datetime</code>.
      */
     public final TableField<JobsRecord, LocalDateTime> APPLIED_DATETIME = createField(DSL.name("applied_datetime"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>job_app.jobs.job_board</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.job_board</code>.
      */
     public final TableField<JobsRecord, String> JOB_BOARD = createField(DSL.name("job_board"), SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>job_app.jobs.note</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.note</code>.
      */
     public final TableField<JobsRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>job_app.jobs.board_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.board_id</code>.
      */
     public final TableField<JobsRecord, String> BOARD_ID = createField(DSL.name("board_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.jobs.added_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.added_datetime</code>.
      */
     public final TableField<JobsRecord, LocalDateTime> ADDED_DATETIME = createField(DSL.name("added_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
@@ -127,21 +127,21 @@ public class Jobs extends TableImpl<JobsRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.jobs</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.jobs</code> table reference
      */
     public Jobs(String alias) {
         this(DSL.name(alias), JOBS);
     }
 
     /**
-     * Create an aliased <code>job_app.jobs</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.jobs</code> table reference
      */
     public Jobs(Name alias) {
         this(alias, JOBS);
     }
 
     /**
-     * Create a <code>job_app.jobs</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.jobs</code> table reference
      */
     public Jobs() {
         this(DSL.name("jobs"), null);
@@ -153,7 +153,7 @@ public class Jobs extends TableImpl<JobsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override
@@ -169,7 +169,8 @@ public class Jobs extends TableImpl<JobsRecord> {
     private transient Boards _boards;
 
     /**
-     * Get the implicit join path to the <code>job_app.boards</code> table.
+     * Get the implicit join path to the <code>cqq2l0ixquavsq6l.boards</code>
+     * table.
      */
     public Boards boards() {
         if (_boards == null)

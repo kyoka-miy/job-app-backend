@@ -4,7 +4,7 @@
 package com.example.job_app.infra.jooq.tables;
 
 
-import com.example.job_app.infra.jooq.JobApp;
+import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.JobListsRecord;
 
@@ -32,7 +32,7 @@ public class JobLists extends TableImpl<JobListsRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>job_app.job_lists</code>
+     * The reference instance of <code>cqq2l0ixquavsq6l.job_lists</code>
      */
     public static final JobLists JOB_LISTS = new JobLists();
 
@@ -45,12 +45,12 @@ public class JobLists extends TableImpl<JobListsRecord> {
     }
 
     /**
-     * The column <code>job_app.job_lists.job_list_id</code>.
+     * The column <code>cqq2l0ixquavsq6l.job_lists.job_list_id</code>.
      */
     public final TableField<JobListsRecord, String> JOB_LIST_ID = createField(DSL.name("job_list_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
-     * The column <code>job_app.job_lists.active</code>.
+     * The column <code>cqq2l0ixquavsq6l.job_lists.active</code>.
      */
     public final TableField<JobListsRecord, Boolean> ACTIVE = createField(DSL.name("active"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
@@ -63,21 +63,21 @@ public class JobLists extends TableImpl<JobListsRecord> {
     }
 
     /**
-     * Create an aliased <code>job_app.job_lists</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.job_lists</code> table reference
      */
     public JobLists(String alias) {
         this(DSL.name(alias), JOB_LISTS);
     }
 
     /**
-     * Create an aliased <code>job_app.job_lists</code> table reference
+     * Create an aliased <code>cqq2l0ixquavsq6l.job_lists</code> table reference
      */
     public JobLists(Name alias) {
         this(alias, JOB_LISTS);
     }
 
     /**
-     * Create a <code>job_app.job_lists</code> table reference
+     * Create a <code>cqq2l0ixquavsq6l.job_lists</code> table reference
      */
     public JobLists() {
         this(DSL.name("job_lists"), null);
@@ -89,7 +89,7 @@ public class JobLists extends TableImpl<JobListsRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : JobApp.JOB_APP;
+        return aliased() ? null : Cqq2l0ixquavsq6l.CQQ2L0IXQUAVSQ6L;
     }
 
     @Override

@@ -24,112 +24,112 @@ public class InterviewsRecord extends UpdatableRecordImpl<InterviewsRecord> impl
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>job_app.interviews.interview_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.interview_id</code>.
      */
     public void setInterviewId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.interview_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.interview_id</code>.
      */
     public String getInterviewId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>job_app.interviews.interview_datetime</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.interview_datetime</code>.
      */
     public void setInterviewDatetime(LocalDateTime value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.interview_datetime</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.interview_datetime</code>.
      */
     public LocalDateTime getInterviewDatetime() {
         return (LocalDateTime) get(1);
     }
 
     /**
-     * Setter for <code>job_app.interviews.stage</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.stage</code>.
      */
     public void setStage(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.stage</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.stage</code>.
      */
     public String getStage() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>job_app.interviews.type</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.type</code>.
      */
     public void setType(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.type</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.type</code>.
      */
     public String getType() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>job_app.interviews.note</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.note</code>.
      */
     public void setNote(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.note</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.note</code>.
      */
     public String getNote() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>job_app.interviews.active</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.active</code>.
      */
     public void setActive(Boolean value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.active</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.active</code>.
      */
     public Boolean getActive() {
         return (Boolean) get(5);
     }
 
     /**
-     * Setter for <code>job_app.interviews.job_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.job_id</code>.
      */
     public void setJobId(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.job_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.job_id</code>.
      */
     public String getJobId() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>job_app.interviews.activity_id</code>.
+     * Setter for <code>cqq2l0ixquavsq6l.interviews.activity_id</code>.
      */
     public void setActivityId(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>job_app.interviews.activity_id</code>.
+     * Getter for <code>cqq2l0ixquavsq6l.interviews.activity_id</code>.
      */
     public String getActivityId() {
         return (String) get(7);
