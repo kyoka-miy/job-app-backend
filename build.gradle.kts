@@ -1,5 +1,3 @@
-import org.flywaydb.gradle.task.FlywayInfoTask
-import org.flywaydb.gradle.task.FlywayMigrateTask
 import org.jooq.meta.jaxb.ForcedType
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
