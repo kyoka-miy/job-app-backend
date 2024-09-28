@@ -129,6 +129,7 @@ tasks.withType<BootJar> {
 }
 tasks.withType<BootJar> {
     doLast {
+        println("-------------------------------------------------------------------------------")
         println("JAR generated at: ${archiveFileName.get()}")
     }
 }
