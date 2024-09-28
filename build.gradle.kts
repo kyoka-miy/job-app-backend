@@ -126,9 +126,10 @@ tasks.withType<Test> {
 
 tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
-    doLast {
-        logger.lifecycle("-------------------------------------------------------------------------------")
-        logger.lifecycle("JAR generated at: ${archiveFileName.get()}")
-        logger.lifecycle("-------------------------------------------------------------------------------")
-    }
+}
+
+val isHeroku = System.getenv("HEROKU") != null
+
+tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
+    enabled = !isHeroku
 }
