@@ -16,7 +16,7 @@ class TestConfig {
                 .create()
                 .username(System.getenv("JDBC_DATABASE_USERNAME") ?: "user")
                 .password(System.getenv("JDBC_DATABASE_PASSWORD") ?: "password")
-                .url(System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app")
+                .url(System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/cqq2l0ixquavsq6l")
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .build()
         )
