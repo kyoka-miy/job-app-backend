@@ -62,6 +62,7 @@ class JobController(
         )
     }
 
+    // TODO: Delete interviews, offers together
     @DeleteMapping("jobs/{jobId}")
     fun deleteJob(
         @PathVariable("jobId") jobId: String

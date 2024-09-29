@@ -10,6 +10,7 @@ import com.example.job_app.infra.jooq.tables.Boards;
 import com.example.job_app.infra.jooq.tables.Interviews;
 import com.example.job_app.infra.jooq.tables.JobLists;
 import com.example.job_app.infra.jooq.tables.Jobs;
+import com.example.job_app.infra.jooq.tables.Offers;
 
 
 /**
@@ -47,4 +48,9 @@ public class Tables {
      * The table <code>cqq2l0ixquavsq6l.jobs</code>.
      */
     public static final Jobs JOBS = Jobs.JOBS;
+
+    /**
+     * The table <code>cqq2l0ixquavsq6l.offers</code>.
+     */
+    public static final Offers OFFERS = Offers.OFFERS;
 }
