@@ -1,7 +1,7 @@
 package com.example.job_app.presentation.controller
 
-import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.account.RegisterAccountUsecase
+import com.example.job_app.usecase.account.TokenResponseDto
 import com.example.job_app.usecase.auth.AuthUsecase
 import com.example.job_app.usecase.logout.LogoutService
 import jakarta.servlet.http.HttpServletRequest
@@ -20,7 +20,7 @@ class AuthController(
     fun register(
         @RequestBody @Validated
         request: AccountCreateRequest
-    ): String {
+    ): TokenResponseDto {
         return registerAccountUsecase.execute(
             request.email,
             request.name,
@@ -33,7 +33,7 @@ class AuthController(
     fun login(
         @RequestBody @Validated
         request: LoginRequest
-    ): String {
+    ): TokenResponseDto {
         return authUsecase.execute(request.email, request.password)
     }
 

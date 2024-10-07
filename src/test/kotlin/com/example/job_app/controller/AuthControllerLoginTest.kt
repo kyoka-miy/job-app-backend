@@ -65,7 +65,10 @@ internal class AuthControllerLoginTest(
                 it.contentAsString
             }
 
-        response shouldBe "jwt-token"
+        response shouldEqualJson """{
+                | "token": "jwt-token"
+                |}
+        """.trimMargin()
     }
 
     @Test
