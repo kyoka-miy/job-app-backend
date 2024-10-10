@@ -49,16 +49,13 @@ internal class AuthControllerLoginTest(
         )
         accountRepository.insert(testAccount)
 
-        val request = LoginRequest(
-            email = "test@mail.com",
-            password = "password"
-        )
         whenever(jwtService.generateToken(any())) doReturn "jwt-token"
 
         val response = mockMvc.perform(
             MockMvcRequestBuilders.get("/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))
+                .queryParam("email", "test@mail.com")
+                .queryParam("password", "password")
         ).andExpect(status().isOk)
             .andReturn().response.let {
                 it.characterEncoding = "UTF-8"

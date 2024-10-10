@@ -31,7 +31,7 @@ class AuthController(
 
     @GetMapping("/login")
     fun login(
-        @RequestBody @Validated
+        @Validated
         request: LoginRequest
     ): TokenResponseDto {
         return authUsecase.execute(request.email, request.password)
