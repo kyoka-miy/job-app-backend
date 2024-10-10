@@ -136,8 +136,8 @@ tasks.named("build") {
     dependsOn("flywayMigrate")
 }
 
- val isHeroku = System.getenv("HEROKU") != null
-
- tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
-    enabled = !isHeroku
- }
+// val isHeroku = System.getenv("HEROKU") != null
+//
+// tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
+//    enabled = !isHeroku
+// }
