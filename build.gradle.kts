@@ -1,5 +1,3 @@
-import org.flywaydb.gradle.task.FlywayInfoTask
-import org.flywaydb.gradle.task.FlywayMigrateTask
 import org.jooq.meta.jaxb.ForcedType
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
@@ -75,7 +73,7 @@ ktlint {
 }
 
 flyway {
-    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/cqq2l0ixquavsq6l?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
 }
@@ -85,7 +83,7 @@ jooq {
         create("main") {
             jooqConfiguration.apply {
                 jdbc.apply {
-                    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/job_app?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
+                    url = System.getenv("JDBC_DATABASE_URL") ?: "jdbc:mysql://localhost:3307/cqq2l0ixquavsq6l?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false"
                     user = System.getenv("JDBC_DATABASE_USERNAME") ?: "user"
                     password = System.getenv("JDBC_DATABASE_PASSWORD") ?: "password"
                 }
@@ -93,7 +91,7 @@ jooq {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
-                        inputSchema = System.getenv("JDBC_DATABASE_SCHEMA") ?: "job_app"
+                        inputSchema = "cqq2l0ixquavsq6l"
                         excludes = "flyway_schema_history"
                         forcedTypes.add(
                             ForcedType().apply {
@@ -130,3 +128,17 @@ tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
 
+
+tasks.named("bootRun") {
+    dependsOn("flywayMigrate")
+}
+
+tasks.named("build") {
+    dependsOn("flywayMigrate")
+}
+
+// val isHeroku = System.getenv("HEROKU") != null
+//
+// tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
+//    enabled = !isHeroku
+// }

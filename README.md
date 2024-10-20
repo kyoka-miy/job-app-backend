@@ -14,7 +14,7 @@ Backend application for job application tracker web application.
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your_username/project_name.git
+   git clone https://github.com/kyoka-miy/job-app-backend.git
 2. Navigate to the project directory:
    ```bash
    cd job-app

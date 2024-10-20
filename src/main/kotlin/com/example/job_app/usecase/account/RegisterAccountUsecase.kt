@@ -21,7 +21,7 @@ class RegisterAccountUsecase(
         name: String,
         password: String,
         role: String = "USER"
-    ): String {
+    ): TokenResponseDto {
         if (accountRepository.findByEmail(email) != null) {
             throw UseCaseException(UseCaseErrorCodes.AccountRegister.emailDuplicate, "This email is already registered")
         }
@@ -38,6 +38,12 @@ class RegisterAccountUsecase(
             role = accountRole
         )
         accountRepository.insert(account)
-        return jwtService.generateToken(account)
+        return TokenResponseDto(
+            token = jwtService.generateToken(account)
+        )
     }
 }
+
+data class TokenResponseDto(
+    val token: String
+)

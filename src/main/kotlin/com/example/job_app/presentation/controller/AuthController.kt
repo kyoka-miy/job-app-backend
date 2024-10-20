@@ -1,10 +1,8 @@
 package com.example.job_app.presentation.controller
 
-import com.example.job_app.domain.account.Role
 import com.example.job_app.usecase.account.RegisterAccountUsecase
+import com.example.job_app.usecase.account.TokenResponseDto
 import com.example.job_app.usecase.auth.AuthUsecase
-import com.example.job_app.usecase.logout.LogoutService
-import jakarta.servlet.http.HttpServletRequest
 import jakarta.validation.constraints.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
@@ -13,14 +11,13 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/auth")
 class AuthController(
     private val authUsecase: AuthUsecase,
-    private val logoutService: LogoutService,
     private val registerAccountUsecase: RegisterAccountUsecase
 ) {
     @PostMapping("/register")
     fun register(
         @RequestBody @Validated
         request: AccountCreateRequest
-    ): String {
+    ): TokenResponseDto {
         return registerAccountUsecase.execute(
             request.email,
             request.name,
@@ -31,16 +28,10 @@ class AuthController(
 
     @GetMapping("/login")
     fun login(
-        @RequestBody @Validated
+        @Validated
         request: LoginRequest
-    ): String {
+    ): TokenResponseDto {
         return authUsecase.execute(request.email, request.password)
-    }
-
-    @PostMapping("/logout")
-    fun logout(request: HttpServletRequest): String {
-        logoutService.logout(request)
-        return "Successfully logged out"
     }
 }
 

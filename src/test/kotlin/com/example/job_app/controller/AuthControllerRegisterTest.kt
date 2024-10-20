@@ -74,7 +74,10 @@ internal class AuthControllerRegisterTest(
                 it.contentAsString
             }
 
-        response shouldBe "jwt-token"
+        response shouldEqualJson """{
+                | "token": "jwt-token"
+                |}
+        """.trimMargin()
 
         accountRepository.findByEmail("test@mail.com").shouldNotBeNull().should {
             it.email shouldBe "test@mail.com"

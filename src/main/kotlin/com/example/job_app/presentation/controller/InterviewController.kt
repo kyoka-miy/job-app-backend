@@ -53,6 +53,8 @@ class InterviewController(
     ): List<Interview> {
         return getInterviewsUseCase.execute(jobId)
     }
+
+    // TODO: get Upcoming interviews with boardID
 }
 
 data class AddOrUpdateInterviewRequest(

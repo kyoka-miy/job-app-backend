@@ -8,7 +8,6 @@ import com.example.job_app.presentation.controller.LoginRequest
 import com.example.job_app.usecase.jwt.JwtService
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.kotest.assertions.json.shouldEqualJson
-import io.kotest.matchers.shouldBe
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.any
@@ -49,23 +48,23 @@ internal class AuthControllerLoginTest(
         )
         accountRepository.insert(testAccount)
 
-        val request = LoginRequest(
-            email = "test@mail.com",
-            password = "password"
-        )
         whenever(jwtService.generateToken(any())) doReturn "jwt-token"
 
         val response = mockMvc.perform(
             MockMvcRequestBuilders.get("/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))
+                .queryParam("email", "test@mail.com")
+                .queryParam("password", "password")
         ).andExpect(status().isOk)
             .andReturn().response.let {
                 it.characterEncoding = "UTF-8"
                 it.contentAsString
             }
 
-        response shouldBe "jwt-token"
+        response shouldEqualJson """{
+                | "token": "jwt-token"
+                |}
+        """.trimMargin()
     }
 
     @Test
@@ -79,15 +78,10 @@ internal class AuthControllerLoginTest(
         )
         accountRepository.insert(testAccount)
 
-        val request = LoginRequest(
-            email = "test@mail.com",
-            password = "wrongpassword"
-        )
-
         val response = mockMvc.perform(
             MockMvcRequestBuilders.get("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))
+                .param("email", "test@mail.com")
+                .param("password", "wrongpassword")
         ).andExpect(status().isBadRequest)
             .andReturn().response.let {
                 it.characterEncoding = "UTF-8"
@@ -103,15 +97,10 @@ internal class AuthControllerLoginTest(
 
     @Test
     fun unregisteredEmail() {
-        val request = LoginRequest(
-            email = "test@mail.com",
-            password = "wrongpassword"
-        )
-
         val response = mockMvc.perform(
             MockMvcRequestBuilders.get("/auth/login")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))
+                .param("email", "test@mail.com")
+                .param("password", "wrongpassword")
         ).andExpect(status().isBadRequest)
             .andReturn().response.let {
                 it.characterEncoding = "UTF-8"

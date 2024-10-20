@@ -10,8 +10,10 @@ object UseCaseErrorCodes {
         val emailDuplicate = UseCaseErrorCode("accountRegister.emailDuplicate")
         val invalidRole = UseCaseErrorCode("accountRegister.invalidRole")
     }
-
     object Login {
         val wrongPassword = UseCaseErrorCode("login.wrongPassword")
+    }
+    object Offer {
+        val invalidDateTime = UseCaseErrorCode("offer.invalidDateTime")
     }
 }

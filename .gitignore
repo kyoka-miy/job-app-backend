@@ -1,6 +1,12 @@
 HELP.md
 .gradle
 build/
+# Except the jOOQ generated sources
+!/build/generated/
+!/build/generated/source/
+!/build/generated/source/jooq/
+!/build/generated/source/jooq/main/
+
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
