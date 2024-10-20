@@ -128,7 +128,6 @@ tasks.withType<BootJar> {
     archiveFileName.set("job-app.jar")
 }
 
-
 tasks.named("bootRun") {
     dependsOn("flywayMigrate")
 }
