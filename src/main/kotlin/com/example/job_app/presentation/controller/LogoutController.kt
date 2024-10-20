@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 class LogoutController(
     private val logoutService: LogoutService
 ) {
-    @PostMapping("/logout")
+    @PostMapping("/account-logout")
     fun logout(request: HttpServletRequest): String {
         logoutService.logout(request)
         return "Successfully logged out"
