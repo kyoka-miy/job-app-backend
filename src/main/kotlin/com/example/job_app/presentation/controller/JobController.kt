@@ -1,46 +1,47 @@
 package com.example.job_app.presentation.controller
 
 import com.example.job_app.domain.job.Job
-import com.example.job_app.domain.job.Remote
 import com.example.job_app.domain.job.Status
+import com.example.job_app.domain.job.WorkStyle
+import com.example.job_app.presentation.shared.RequestHeaderContext
 import com.example.job_app.usecase.job.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @RestController
+@RequestMapping("/jobs")
 class JobController(
     private val addJobUseCase: AddJobUseCase,
     private val updateJobUseCase: UpdateJobUseCase,
     private val deleteJobUseCase: DeleteJobUseCase,
     private val getJobsUseCase: GetJobsUseCase,
-    private val getJobsByStatusUseCase: GetJobsByStatusUseCase
+    private val getJobsByStatusUseCase: GetJobsByStatusUseCase,
+    private val requestHeaderContext: RequestHeaderContext
 ) {
-    @PostMapping("/boards/{boardId}/jobs")
+    @PostMapping
     fun addJob(
-        @PathVariable("boardId") boardId: String,
         @RequestBody @Validated
         request: AddOrUpdateJobRequest
     ) {
         addJobUseCase.execute(
-            boardId,
+            requestHeaderContext.getBoardId(),
             request.jobTitle,
             request.companyName,
             request.url,
             request.location,
             request.salary,
-            request.remote,
-            request.description,
-            request.status,
-            request.appliedDateTime,
+            request.workStyle,
             request.jobBoard,
-            request.note
+            request.note,
+            request.status,
+            request.appliedDate
         )
     }
 
-    @PutMapping("/jobs/{jobId}")
+    @PutMapping("/{jobId}")
     fun updateJob(
         @PathVariable("jobId") jobId: String,
         @RequestBody @Validated
@@ -53,16 +54,14 @@ class JobController(
             request.url,
             request.location,
             request.salary,
-            request.remote,
-            request.description,
+            request.workStyle,
             request.status,
-            request.appliedDateTime,
+            request.appliedDate,
             request.jobBoard,
             request.note
         )
     }
 
-    // TODO: Delete interviews, offers together
     @DeleteMapping("jobs/{jobId}")
     fun deleteJob(
         @PathVariable("jobId") jobId: String
@@ -70,36 +69,34 @@ class JobController(
         deleteJobUseCase.execute(jobId)
     }
 
-    @GetMapping("/boards/{boardId}/jobs")
-    fun getJobs(@PathVariable("boardId") boardId: String): Map<Status, List<Job>> {
-        return getJobsUseCase.execute(boardId)
-    }
+//    @GetMapping("/boards/{boardId}/jobs")
+//    fun getJobs(@PathVariable("boardId") boardId: String): Map<Status, List<Job>> {
+//        return getJobsUseCase.execute(boardId)
+//    }
 
-    @GetMapping("/boards/{boardId}/jobs/status")
+    @GetMapping
     fun getJobsByStatus(
-        @PathVariable("boardId") boardId: String,
         @RequestParam status: Status
     ): List<Job> {
         return getJobsByStatusUseCase.execute(
-            boardId,
+            requestHeaderContext.getBoardId(),
             status
         )
     }
 }
 
 data class AddOrUpdateJobRequest(
-    @field:NotBlank(message = "jobTitle cannot be blank")
-    val jobTitle: String,
     @field:NotBlank(message = "companyName cannot be blank")
     val companyName: String,
+    @field:NotBlank(message = "jobTitle cannot be blank")
+    val jobTitle: String,
+    val appliedDate: LocalDate?,
     val url: String?,
     val location: String?,
-    val salary: String?,
-    val remote: Remote?,
-    val description: String?,
     @field:NotNull(message = "status cannot be null")
     val status: Status,
-    val appliedDateTime: LocalDateTime?,
+    val workStyle: WorkStyle?,
+    val salary: String?,
     val jobBoard: String?,
     val note: String?
 )

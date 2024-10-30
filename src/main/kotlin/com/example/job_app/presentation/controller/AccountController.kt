@@ -4,6 +4,7 @@ import com.example.job_app.presentation.auth.AccountSessionProvider
 import com.example.job_app.usecase.account.DeleteAccountUseCase
 import com.example.job_app.usecase.account.GetAccountUseCase
 import com.example.job_app.usecase.account.UpdateAccountNameUseCase
+import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.constraints.NotBlank
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping

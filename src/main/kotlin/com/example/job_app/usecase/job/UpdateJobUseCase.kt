@@ -1,8 +1,8 @@
 package com.example.job_app.usecase.job
 
 import com.example.job_app.domain.job.JobRepository
-import com.example.job_app.domain.job.Remote
 import com.example.job_app.domain.job.Status
+import com.example.job_app.domain.job.WorkStyle
 import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import org.springframework.stereotype.Component
@@ -20,10 +20,9 @@ class UpdateJobUseCase(
         url: String?,
         location: String?,
         salary: String?,
-        remote: Remote?,
-        description: String?,
+        workStyle: WorkStyle?,
         status: Status,
-        appliedDateTime: LocalDateTime?,
+        appliedDate: LocalDate?,
         jobBoard: String?,
         note: String?
     ) {
@@ -33,10 +32,9 @@ class UpdateJobUseCase(
         job.url = url
         job.location = location
         job.salary = salary
-        job.remote = remote
-        job.description = description
+        job.workStyle = workStyle
         job.status = status
-        job.appliedDatetime = appliedDateTime
+        job.appliedDate = appliedDate
         job.jobBoard = jobBoard
         job.note = note
         jobRepository.update(job)

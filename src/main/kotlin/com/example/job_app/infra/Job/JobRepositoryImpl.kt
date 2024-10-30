@@ -2,8 +2,8 @@ package com.example.job_app.infra.Job
 
 import com.example.job_app.domain.job.Job
 import com.example.job_app.domain.job.JobRepository
-import com.example.job_app.domain.job.Remote
 import com.example.job_app.domain.job.Status
+import com.example.job_app.domain.job.WorkStyle
 import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
 import com.example.job_app.infra.jooq.Tables
@@ -24,10 +24,9 @@ class JobRepositoryImpl(
                 .set(Tables.JOBS.URL, job.url)
                 .set(Tables.JOBS.LOCATION, job.location)
                 .set(Tables.JOBS.SALARY, job.salary)
-                .set(Tables.JOBS.REMOTE, job.remote?.name)
-                .set(Tables.JOBS.DESCRIPTION, job.description)
+                .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
                 .set(Tables.JOBS.STATUS, job.status.name)
-                .set(Tables.JOBS.APPLIED_DATETIME, job.appliedDatetime)
+                .set(Tables.JOBS.APPLIED_DATE, job.appliedDate)
                 .set(Tables.JOBS.JOB_BOARD, job.jobBoard)
                 .set(Tables.JOBS.NOTE, job.note)
                 .set(Tables.JOBS.ADDED_DATETIME, job.addedDatetime)
@@ -55,13 +54,11 @@ class JobRepositoryImpl(
             .set(Tables.JOBS.URL, job.url)
             .set(Tables.JOBS.LOCATION, job.location)
             .set(Tables.JOBS.SALARY, job.salary)
-            .set(Tables.JOBS.REMOTE, job.remote?.name)
-            .set(Tables.JOBS.DESCRIPTION, job.description)
+            .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
             .set(Tables.JOBS.STATUS, job.status.name)
-            .set(Tables.JOBS.APPLIED_DATETIME, job.appliedDatetime)
+            .set(Tables.JOBS.APPLIED_DATE, job.appliedDate)
             .set(Tables.JOBS.JOB_BOARD, job.jobBoard)
             .set(Tables.JOBS.NOTE, job.note)
-            .set(Tables.JOBS.ADDED_DATETIME, job.addedDatetime)
             .set(Tables.JOBS.BOARD_ID, job.boardId)
             .where(Tables.JOBS.JOB_ID.eq(job.jobId))
             .execute()
@@ -102,10 +99,9 @@ class JobRepositoryImpl(
             url = record.url,
             location = record.location,
             salary = record.salary,
-            remote = record.remote?.let { Remote.valueOf(it) },
-            description = record.description,
+            workStyle = record.workStyle?.let { WorkStyle.valueOf(it) },
             status = Status.valueOf(record.status),
-            appliedDatetime = record.appliedDatetime,
+            appliedDate = record.appliedDate,
             jobBoard = record.jobBoard,
             note = record.note,
             addedDatetime = record.addedDatetime,

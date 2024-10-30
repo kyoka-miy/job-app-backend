@@ -1,6 +1,7 @@
 package com.example.job_app.domain.job
 
 import com.example.job_app.domain.shared.IdGenerator
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class Job(
@@ -10,20 +11,19 @@ data class Job(
     var url: String?,
     var location: String?,
     var salary: String?,
-    var remote: Remote?,
-    var description: String?,
+    var workStyle: WorkStyle?,
     var status: Status,
-    var appliedDatetime: LocalDateTime?,
+    var appliedDate: LocalDate?,
     var jobBoard: String?,
     var note: String?,
     val addedDatetime: LocalDateTime,
     val boardId: String
 )
 
-enum class Remote {
+enum class WorkStyle {
     REMOTE, ON_SITE, HYBRID
 }
 
 enum class Status {
-    APPLIED, INTERVIEW, OFFER, REJECTED, WISH_LIST, OFFER_ACCEPTED
+    APPLIED, INTERVIEW, OFFER, REJECTED, WISHLIST, OFFER_ACCEPTED
 }

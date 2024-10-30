@@ -8,6 +8,7 @@ import com.example.job_app.infra.jooq.Cqq2l0ixquavsq6l;
 import com.example.job_app.infra.jooq.Keys;
 import com.example.job_app.infra.jooq.tables.records.JobsRecord;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row14;
+import org.jooq.Row13;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -79,14 +80,9 @@ public class Jobs extends TableImpl<JobsRecord> {
     public final TableField<JobsRecord, String> SALARY = createField(DSL.name("salary"), SQLDataType.VARCHAR(128), this, "");
 
     /**
-     * The column <code>cqq2l0ixquavsq6l.jobs.remote</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.work_style</code>.
      */
-    public final TableField<JobsRecord, String> REMOTE = createField(DSL.name("remote"), SQLDataType.VARCHAR(20), this, "");
-
-    /**
-     * The column <code>cqq2l0ixquavsq6l.jobs.description</code>.
-     */
-    public final TableField<JobsRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.CLOB, this, "");
+    public final TableField<JobsRecord, String> WORK_STYLE = createField(DSL.name("work_style"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>cqq2l0ixquavsq6l.jobs.status</code>.
@@ -94,9 +90,9 @@ public class Jobs extends TableImpl<JobsRecord> {
     public final TableField<JobsRecord, String> STATUS = createField(DSL.name("status"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>cqq2l0ixquavsq6l.jobs.applied_datetime</code>.
+     * The column <code>cqq2l0ixquavsq6l.jobs.applied_date</code>.
      */
-    public final TableField<JobsRecord, LocalDateTime> APPLIED_DATETIME = createField(DSL.name("applied_datetime"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<JobsRecord, LocalDate> APPLIED_DATE = createField(DSL.name("applied_date"), SQLDataType.LOCALDATE, this, "");
 
     /**
      * The column <code>cqq2l0ixquavsq6l.jobs.job_board</code>.
@@ -206,11 +202,11 @@ public class Jobs extends TableImpl<JobsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row14 type methods
+    // Row13 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<String, String, String, String, String, String, String, String, String, LocalDateTime, String, String, String, LocalDateTime> fieldsRow() {
-        return (Row14) super.fieldsRow();
+    public Row13<String, String, String, String, String, String, String, String, LocalDate, String, String, String, LocalDateTime> fieldsRow() {
+        return (Row13) super.fieldsRow();
     }
 }

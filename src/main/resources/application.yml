@@ -13,12 +13,16 @@ spring:
       max-lifetime: 60000
 
 jwt:
-  secret_key: C8C6D159EB43729B1190D0EFE6907414677162741A2B067ECC985081D16BD577
+  secretKey: C8C6D159EB43729B1190D0EFE6907414677162741A2B067ECC985081D16BD577
   expiration: 86400000
 
 server:
   port: ${PORT:8080}
 
+place:
+  url: https://maps.googleapis.com/maps/api/place/autocomplete/json
+  apiKey: AIzaSyCA0vQ1AFVWR1uTcg6AYEk28DX88NI1EOI
+
 logging:
   level:
-    root: DEBUG
+    root: INFO

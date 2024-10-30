@@ -38,5 +38,5 @@ Backend application for job application tracker web application.
   ./gradlew ktlintFormat
 - Log in to the database:
   ```bash
-  docker exec -it job-app mysql -uuser -ppassword job_app
-  mysql -h 127.0.0.1 -P 3307 -u user -ppassword job_app
+  docker exec -it job-app mysql -uuser -ppassword cqq2l0ixquavsq6l
+  mysql -h 127.0.0.1 -P 3307 -u user -ppassword cqq2l0ixquavsq6l
