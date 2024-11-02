@@ -1,0 +1,2 @@
+ALTER TABLE `jobs`
+ADD COLUMN `place_id` VARCHAR(128) DEFAULT NULL AFTER `location`;

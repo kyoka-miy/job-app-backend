@@ -23,6 +23,7 @@ class JobRepositoryImpl(
                 .set(Tables.JOBS.COMPANY_NAME, job.companyName)
                 .set(Tables.JOBS.URL, job.url)
                 .set(Tables.JOBS.LOCATION, job.location)
+                .set(Tables.JOBS.PLACE_ID, job.placeId)
                 .set(Tables.JOBS.SALARY, job.salary)
                 .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
                 .set(Tables.JOBS.STATUS, job.status.name)
@@ -53,6 +54,7 @@ class JobRepositoryImpl(
             .set(Tables.JOBS.COMPANY_NAME, job.companyName)
             .set(Tables.JOBS.URL, job.url)
             .set(Tables.JOBS.LOCATION, job.location)
+            .set(Tables.JOBS.PLACE_ID, job.placeId)
             .set(Tables.JOBS.SALARY, job.salary)
             .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
             .set(Tables.JOBS.STATUS, job.status.name)
@@ -98,6 +100,7 @@ class JobRepositoryImpl(
             companyName = record.companyName,
             url = record.url,
             location = record.location,
+            placeId = record.placeId,
             salary = record.salary,
             workStyle = record.workStyle?.let { WorkStyle.valueOf(it) },
             status = Status.valueOf(record.status),

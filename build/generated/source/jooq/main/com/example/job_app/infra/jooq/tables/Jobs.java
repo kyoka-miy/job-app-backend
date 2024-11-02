@@ -17,7 +17,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -73,6 +73,11 @@ public class Jobs extends TableImpl<JobsRecord> {
      * The column <code>cqq2l0ixquavsq6l.jobs.location</code>.
      */
     public final TableField<JobsRecord, String> LOCATION = createField(DSL.name("location"), SQLDataType.VARCHAR(128), this, "");
+
+    /**
+     * The column <code>cqq2l0ixquavsq6l.jobs.place_id</code>.
+     */
+    public final TableField<JobsRecord, String> PLACE_ID = createField(DSL.name("place_id"), SQLDataType.VARCHAR(128), this, "");
 
     /**
      * The column <code>cqq2l0ixquavsq6l.jobs.salary</code>.
@@ -202,11 +207,11 @@ public class Jobs extends TableImpl<JobsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<String, String, String, String, String, String, String, String, LocalDate, String, String, String, LocalDateTime> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<String, String, String, String, String, String, String, String, String, LocalDate, String, String, String, LocalDateTime> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 }

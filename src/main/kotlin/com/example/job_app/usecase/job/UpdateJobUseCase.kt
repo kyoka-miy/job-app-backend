@@ -19,6 +19,7 @@ class UpdateJobUseCase(
         companyName: String,
         url: String?,
         location: String?,
+        placeId: String?,
         salary: String?,
         workStyle: WorkStyle?,
         status: Status,
@@ -31,6 +32,7 @@ class UpdateJobUseCase(
         job.companyName = companyName
         job.url = url
         job.location = location
+        job.placeId = placeId
         job.salary = salary
         job.workStyle = workStyle
         job.status = status

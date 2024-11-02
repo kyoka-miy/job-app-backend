@@ -32,6 +32,7 @@ class JobController(
             request.companyName,
             request.url,
             request.location,
+            request.placeId,
             request.salary,
             request.workStyle,
             request.jobBoard,
@@ -53,6 +54,7 @@ class JobController(
             request.companyName,
             request.url,
             request.location,
+            request.placeId,
             request.salary,
             request.workStyle,
             request.status,
@@ -93,6 +95,7 @@ data class AddOrUpdateJobRequest(
     val appliedDate: LocalDate?,
     val url: String?,
     val location: String?,
+    val placeId: String?,
     @field:NotNull(message = "status cannot be null")
     val status: Status,
     val workStyle: WorkStyle?,

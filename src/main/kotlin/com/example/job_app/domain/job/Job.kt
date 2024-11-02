@@ -10,6 +10,7 @@ data class Job(
     var companyName: String,
     var url: String?,
     var location: String?,
+    var placeId: String?,
     var salary: String?,
     var workStyle: WorkStyle?,
     var status: Status,
