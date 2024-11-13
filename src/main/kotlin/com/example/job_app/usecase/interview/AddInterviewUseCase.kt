@@ -18,22 +18,20 @@ class AddInterviewUseCase(
     private val jobRepository: JobRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun execute(jobId: String, interviewDateTime: LocalDateTime, stage: String, type: String, note: String?) {
+    fun execute(jobId: String, title: String, tags: List<String>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
         jobRepository.fetch(jobId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Job not found")
         val activity = Activity(
-            name = stage,
+            name = title,
             activityDateTime = interviewDateTime,
             deleted = false,
             jobId = jobId
         )
         activityRepository.insert(activity)
-        val active = LocalDateTime.now() < interviewDateTime
         val interview = Interview(
+            title = title,
             interviewDateTime = interviewDateTime,
-            stage = stage,
-            type = type,
             note = note,
-            active = active,
+            completed = completed,
             jobId = jobId,
             activityId = activity.activityId
         )

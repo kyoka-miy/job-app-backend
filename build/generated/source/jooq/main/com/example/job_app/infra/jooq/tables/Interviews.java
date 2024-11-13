@@ -16,7 +16,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row8;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -54,19 +54,14 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     public final TableField<InterviewsRecord, String> INTERVIEW_ID = createField(DSL.name("interview_id"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
+     * The column <code>cqq2l0ixquavsq6l.interviews.title</code>.
+     */
+    public final TableField<InterviewsRecord, String> TITLE = createField(DSL.name("title"), SQLDataType.VARCHAR(128).nullable(false), this, "");
+
+    /**
      * The column <code>cqq2l0ixquavsq6l.interviews.interview_datetime</code>.
      */
     public final TableField<InterviewsRecord, LocalDateTime> INTERVIEW_DATETIME = createField(DSL.name("interview_datetime"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
-
-    /**
-     * The column <code>cqq2l0ixquavsq6l.interviews.stage</code>.
-     */
-    public final TableField<InterviewsRecord, String> STAGE = createField(DSL.name("stage"), SQLDataType.VARCHAR(128).nullable(false), this, "");
-
-    /**
-     * The column <code>cqq2l0ixquavsq6l.interviews.type</code>.
-     */
-    public final TableField<InterviewsRecord, String> TYPE = createField(DSL.name("type"), SQLDataType.VARCHAR(128).nullable(false), this, "");
 
     /**
      * The column <code>cqq2l0ixquavsq6l.interviews.note</code>.
@@ -74,9 +69,9 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     public final TableField<InterviewsRecord, String> NOTE = createField(DSL.name("note"), SQLDataType.CLOB, this, "");
 
     /**
-     * The column <code>cqq2l0ixquavsq6l.interviews.active</code>.
+     * The column <code>cqq2l0ixquavsq6l.interviews.completed</code>.
      */
-    public final TableField<InterviewsRecord, Boolean> ACTIVE = createField(DSL.name("active"), SQLDataType.BOOLEAN.nullable(false), this, "");
+    public final TableField<InterviewsRecord, Boolean> COMPLETED = createField(DSL.name("completed"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
      * The column <code>cqq2l0ixquavsq6l.interviews.job_id</code>.
@@ -190,11 +185,11 @@ public class Interviews extends TableImpl<InterviewsRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row8 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row8<String, LocalDateTime, String, String, String, Boolean, String, String> fieldsRow() {
-        return (Row8) super.fieldsRow();
+    public Row7<String, String, LocalDateTime, String, Boolean, String, String> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 }

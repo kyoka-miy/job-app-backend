@@ -17,13 +17,13 @@ class InterviewController(
     private val getInterviewsUseCase: GetInterviewsUseCase,
     private val inactivateInterviewUseCase: InactivateInterviewUseCase
 ) {
-    @PostMapping("/{jobId}")
+    @PostMapping("/jobs/{jobId}")
     fun addInterview(
         @PathVariable("jobId") jobId: String,
         @RequestBody @Validated
         request: AddOrUpdateInterviewRequest
     ) {
-        addInterviewUseCase.execute(jobId, request.interviewDateTime, request.stage, request.type, request.note)
+        addInterviewUseCase.execute(jobId, request.title, request.tags, request.interviewDateTime, request.note, request.completed)
     }
 
     @DeleteMapping("/{interviewId}")
@@ -37,7 +37,7 @@ class InterviewController(
         @RequestBody @Validated
         request: AddOrUpdateInterviewRequest
     ) {
-        updateInterviewUseCase.execute(interviewId, request.interviewDateTime, request.stage, request.type, request.note)
+        updateInterviewUseCase.execute(interviewId, request.title, request.tags, request.interviewDateTime, request.note, request.completed)
     }
 
     @PutMapping("/{interviewId}/inactivate") // when the interview finished
@@ -58,11 +58,9 @@ class InterviewController(
 }
 
 data class AddOrUpdateInterviewRequest(
-    @field:NotNull
+    val title: String,
+    val tags: List<String>?,
     val interviewDateTime: LocalDateTime,
-    @field:NotNull
-    val stage: String,
-    @field:NotBlank
-    val type: String,
-    val note: String?
+    val note: String?,
+    val completed: Boolean
 )

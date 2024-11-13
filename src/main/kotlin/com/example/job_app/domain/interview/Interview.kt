@@ -5,11 +5,10 @@ import java.time.LocalDateTime
 
 data class Interview(
     val interviewId: String = IdGenerator.generate(),
+    var title: String,
     var interviewDateTime: LocalDateTime,
-    var stage: String,
-    var type: String,
     var note: String?,
-    var active: Boolean,
+    var completed: Boolean,
     val jobId: String,
     val activityId: String
 )

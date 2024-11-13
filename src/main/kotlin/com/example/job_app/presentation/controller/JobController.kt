@@ -64,7 +64,7 @@ class JobController(
         )
     }
 
-    @DeleteMapping("jobs/{jobId}")
+    @DeleteMapping("/{jobId}")
     fun deleteJob(
         @PathVariable("jobId") jobId: String
     ) {

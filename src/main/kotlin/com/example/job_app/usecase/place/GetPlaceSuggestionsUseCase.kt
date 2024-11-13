@@ -19,7 +19,7 @@ class GetPlaceSuggestionsUseCase(
         val requestUrl = "${placeProperties.url}?input=$input&key=${placeProperties.apiKey}&type=(cities)"
         try {
             val response: ResponseEntity<Map<String, Any>> = restTemplate.exchange(
-                requestUrl,
+                "",
                 HttpMethod.GET,
                 null,
                 object : ParameterizedTypeReference<Map<String, Any>>() {}

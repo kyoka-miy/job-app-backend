@@ -17,11 +17,10 @@ class InterviewRepositoryImpl(
         try {
             jooq.insertInto(Tables.INTERVIEWS)
                 .set(Tables.INTERVIEWS.INTERVIEW_ID, interview.interviewId)
+                .set(Tables.INTERVIEWS.TITLE, interview.title)
                 .set(Tables.INTERVIEWS.INTERVIEW_DATETIME, interview.interviewDateTime)
-                .set(Tables.INTERVIEWS.STAGE, interview.stage)
-                .set(Tables.INTERVIEWS.TYPE, interview.type)
                 .set(Tables.INTERVIEWS.NOTE, interview.note)
-                .set(Tables.INTERVIEWS.ACTIVE, interview.active)
+                .set(Tables.INTERVIEWS.COMPLETED, interview.completed)
                 .set(Tables.INTERVIEWS.JOB_ID, interview.jobId)
                 .set(Tables.INTERVIEWS.ACTIVITY_ID, interview.activityId)
                 .execute()
@@ -48,10 +47,9 @@ class InterviewRepositoryImpl(
     override fun update(interview: Interview) {
         jooq.update(Tables.INTERVIEWS)
             .set(Tables.INTERVIEWS.INTERVIEW_DATETIME, interview.interviewDateTime)
-            .set(Tables.INTERVIEWS.STAGE, interview.stage)
-            .set(Tables.INTERVIEWS.TYPE, interview.type)
+            .set(Tables.INTERVIEWS.TITLE, interview.title)
             .set(Tables.INTERVIEWS.NOTE, interview.note)
-            .set(Tables.INTERVIEWS.ACTIVE, interview.active)
+            .set(Tables.INTERVIEWS.COMPLETED, interview.completed)
             .execute()
     }
 
@@ -67,11 +65,10 @@ class InterviewRepositoryImpl(
     private fun recordToEntity(record: InterviewsRecord): Interview {
         return Interview(
             interviewId = record.interviewId,
+            title = record.title,
             interviewDateTime = record.interviewDatetime,
-            stage = record.stage,
-            type = record.type,
             note = record.note,
-            active = record.active,
+            completed = record.completed,
             jobId = record.jobId,
             activityId = record.activityId
         )

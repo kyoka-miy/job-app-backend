@@ -14,20 +14,18 @@ class UpdateInterviewUseCase(
     private val interviewRepository: InterviewRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun execute(interviewId: String, interviewDateTime: LocalDateTime, stage: String, type: String, note: String?) {
+    fun execute(interviewId: String, title: String, tags: List<String>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
         val interview = interviewRepository.fetch(interviewId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Interview not found")
         val activity = activityRepository.fetch(interview.activityId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Activity not found")
-        activity.name = stage
+        activity.name = title
         activity.activityDateTime = interviewDateTime
         activity.deleted = false
         activityRepository.update(activity)
 
-        val active = LocalDateTime.now() < interviewDateTime
+        interview.title = title
         interview.interviewDateTime = interviewDateTime
-        interview.stage = stage
-        interview.type = type
         interview.note = note
-        interview.active = active
+        interview.completed = completed
         interviewRepository.update(interview)
     }
 }
