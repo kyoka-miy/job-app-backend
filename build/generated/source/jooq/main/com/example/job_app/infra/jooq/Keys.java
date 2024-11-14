@@ -7,6 +7,7 @@ package com.example.job_app.infra.jooq;
 import com.example.job_app.infra.jooq.tables.Accounts;
 import com.example.job_app.infra.jooq.tables.Activities;
 import com.example.job_app.infra.jooq.tables.Boards;
+import com.example.job_app.infra.jooq.tables.InterviewTags;
 import com.example.job_app.infra.jooq.tables.Interviews;
 import com.example.job_app.infra.jooq.tables.JobLists;
 import com.example.job_app.infra.jooq.tables.Jobs;
@@ -14,6 +15,7 @@ import com.example.job_app.infra.jooq.tables.Offers;
 import com.example.job_app.infra.jooq.tables.records.AccountsRecord;
 import com.example.job_app.infra.jooq.tables.records.ActivitiesRecord;
 import com.example.job_app.infra.jooq.tables.records.BoardsRecord;
+import com.example.job_app.infra.jooq.tables.records.InterviewTagsRecord;
 import com.example.job_app.infra.jooq.tables.records.InterviewsRecord;
 import com.example.job_app.infra.jooq.tables.records.JobListsRecord;
 import com.example.job_app.infra.jooq.tables.records.JobsRecord;
@@ -41,6 +43,7 @@ public class Keys {
     public static final UniqueKey<AccountsRecord> KEY_ACCOUNTS_PRIMARY = Internal.createUniqueKey(Accounts.ACCOUNTS, DSL.name("KEY_accounts_PRIMARY"), new TableField[] { Accounts.ACCOUNTS.ACCOUNT_ID }, true);
     public static final UniqueKey<ActivitiesRecord> KEY_ACTIVITIES_PRIMARY = Internal.createUniqueKey(Activities.ACTIVITIES, DSL.name("KEY_activities_PRIMARY"), new TableField[] { Activities.ACTIVITIES.ACTIVITY_ID }, true);
     public static final UniqueKey<BoardsRecord> KEY_BOARDS_PRIMARY = Internal.createUniqueKey(Boards.BOARDS, DSL.name("KEY_boards_PRIMARY"), new TableField[] { Boards.BOARDS.BOARD_ID }, true);
+    public static final UniqueKey<InterviewTagsRecord> KEY_INTERVIEW_TAGS_PRIMARY = Internal.createUniqueKey(InterviewTags.INTERVIEW_TAGS, DSL.name("KEY_interview_tags_PRIMARY"), new TableField[] { InterviewTags.INTERVIEW_TAGS.INTERVIEW_ID, InterviewTags.INTERVIEW_TAGS.NAME }, true);
     public static final UniqueKey<InterviewsRecord> KEY_INTERVIEWS_PRIMARY = Internal.createUniqueKey(Interviews.INTERVIEWS, DSL.name("KEY_interviews_PRIMARY"), new TableField[] { Interviews.INTERVIEWS.INTERVIEW_ID }, true);
     public static final UniqueKey<JobListsRecord> KEY_JOB_LISTS_PRIMARY = Internal.createUniqueKey(JobLists.JOB_LISTS, DSL.name("KEY_job_lists_PRIMARY"), new TableField[] { JobLists.JOB_LISTS.JOB_LIST_ID }, true);
     public static final UniqueKey<JobsRecord> KEY_JOBS_PRIMARY = Internal.createUniqueKey(Jobs.JOBS, DSL.name("KEY_jobs_PRIMARY"), new TableField[] { Jobs.JOBS.JOB_ID }, true);
@@ -52,6 +55,7 @@ public class Keys {
 
     public static final ForeignKey<ActivitiesRecord, JobsRecord> FK_ACTIVITIES_JOBS = Internal.createForeignKey(Activities.ACTIVITIES, DSL.name("fk_activities_jobs"), new TableField[] { Activities.ACTIVITIES.JOB_ID }, Keys.KEY_JOBS_PRIMARY, new TableField[] { Jobs.JOBS.JOB_ID }, true);
     public static final ForeignKey<BoardsRecord, AccountsRecord> FK_BOARDS_ACCOUNTS = Internal.createForeignKey(Boards.BOARDS, DSL.name("fk_boards_accounts"), new TableField[] { Boards.BOARDS.ACCOUNT_ID }, Keys.KEY_ACCOUNTS_PRIMARY, new TableField[] { Accounts.ACCOUNTS.ACCOUNT_ID }, true);
+    public static final ForeignKey<InterviewTagsRecord, InterviewsRecord> FK_INTERVIEW_TAGS_INTERVIEWS = Internal.createForeignKey(InterviewTags.INTERVIEW_TAGS, DSL.name("fk_interview_tags_interviews"), new TableField[] { InterviewTags.INTERVIEW_TAGS.INTERVIEW_ID }, Keys.KEY_INTERVIEWS_PRIMARY, new TableField[] { Interviews.INTERVIEWS.INTERVIEW_ID }, true);
     public static final ForeignKey<InterviewsRecord, ActivitiesRecord> FK_INTERVIEWS_ACTIVITIES = Internal.createForeignKey(Interviews.INTERVIEWS, DSL.name("fk_interviews_activities"), new TableField[] { Interviews.INTERVIEWS.ACTIVITY_ID }, Keys.KEY_ACTIVITIES_PRIMARY, new TableField[] { Activities.ACTIVITIES.ACTIVITY_ID }, true);
     public static final ForeignKey<InterviewsRecord, JobsRecord> FK_INTERVIEWS_JOBS = Internal.createForeignKey(Interviews.INTERVIEWS, DSL.name("fk_interviews_jobs"), new TableField[] { Interviews.INTERVIEWS.JOB_ID }, Keys.KEY_JOBS_PRIMARY, new TableField[] { Jobs.JOBS.JOB_ID }, true);
     public static final ForeignKey<JobsRecord, BoardsRecord> FK_JOBS_BOARDS = Internal.createForeignKey(Jobs.JOBS, DSL.name("fk_jobs_boards"), new TableField[] { Jobs.JOBS.BOARD_ID }, Keys.KEY_BOARDS_PRIMARY, new TableField[] { Boards.BOARDS.BOARD_ID }, true);

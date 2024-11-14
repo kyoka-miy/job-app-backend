@@ -2,6 +2,7 @@ package com.example.job_app.usecase.interview
 
 import com.example.job_app.domain.activity.ActivityRepository
 import com.example.job_app.domain.interview.InterviewRepository
+import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
 import jakarta.transaction.Transactional
@@ -14,7 +15,7 @@ class UpdateInterviewUseCase(
     private val interviewRepository: InterviewRepository,
     private val activityRepository: ActivityRepository
 ) {
-    fun execute(interviewId: String, title: String, tags: List<String>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
+    fun execute(interviewId: String, title: String, tags: List<TagName>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
         val interview = interviewRepository.fetch(interviewId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Interview not found")
         val activity = activityRepository.fetch(interview.activityId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Activity not found")
         activity.name = title

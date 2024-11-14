@@ -7,6 +7,7 @@ package com.example.job_app.infra.jooq;
 import com.example.job_app.infra.jooq.tables.Accounts;
 import com.example.job_app.infra.jooq.tables.Activities;
 import com.example.job_app.infra.jooq.tables.Boards;
+import com.example.job_app.infra.jooq.tables.InterviewTags;
 import com.example.job_app.infra.jooq.tables.Interviews;
 import com.example.job_app.infra.jooq.tables.JobLists;
 import com.example.job_app.infra.jooq.tables.Jobs;
@@ -49,6 +50,11 @@ public class Cqq2l0ixquavsq6l extends SchemaImpl {
     public final Boards BOARDS = Boards.BOARDS;
 
     /**
+     * The table <code>cqq2l0ixquavsq6l.interview_tags</code>.
+     */
+    public final InterviewTags INTERVIEW_TAGS = InterviewTags.INTERVIEW_TAGS;
+
+    /**
      * The table <code>cqq2l0ixquavsq6l.interviews</code>.
      */
     public final Interviews INTERVIEWS = Interviews.INTERVIEWS;
@@ -87,6 +93,7 @@ public class Cqq2l0ixquavsq6l extends SchemaImpl {
             Accounts.ACCOUNTS,
             Activities.ACTIVITIES,
             Boards.BOARDS,
+            InterviewTags.INTERVIEW_TAGS,
             Interviews.INTERVIEWS,
             JobLists.JOB_LISTS,
             Jobs.JOBS,

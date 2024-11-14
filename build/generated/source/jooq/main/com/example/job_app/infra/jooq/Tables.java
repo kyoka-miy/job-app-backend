@@ -7,6 +7,7 @@ package com.example.job_app.infra.jooq;
 import com.example.job_app.infra.jooq.tables.Accounts;
 import com.example.job_app.infra.jooq.tables.Activities;
 import com.example.job_app.infra.jooq.tables.Boards;
+import com.example.job_app.infra.jooq.tables.InterviewTags;
 import com.example.job_app.infra.jooq.tables.Interviews;
 import com.example.job_app.infra.jooq.tables.JobLists;
 import com.example.job_app.infra.jooq.tables.Jobs;
@@ -33,6 +34,11 @@ public class Tables {
      * The table <code>cqq2l0ixquavsq6l.boards</code>.
      */
     public static final Boards BOARDS = Boards.BOARDS;
+
+    /**
+     * The table <code>cqq2l0ixquavsq6l.interview_tags</code>.
+     */
+    public static final InterviewTags INTERVIEW_TAGS = InterviewTags.INTERVIEW_TAGS;
 
     /**
      * The table <code>cqq2l0ixquavsq6l.interviews</code>.

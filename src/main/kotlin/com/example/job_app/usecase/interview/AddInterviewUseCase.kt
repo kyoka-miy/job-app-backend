@@ -4,6 +4,9 @@ import com.example.job_app.domain.activity.Activity
 import com.example.job_app.domain.activity.ActivityRepository
 import com.example.job_app.domain.interview.Interview
 import com.example.job_app.domain.interview.InterviewRepository
+import com.example.job_app.domain.interviewTag.InterviewTag
+import com.example.job_app.domain.interviewTag.InterviewTagRepository
+import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.domain.job.JobRepository
 import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
@@ -16,9 +19,10 @@ import java.time.LocalDateTime
 class AddInterviewUseCase(
     private val interviewRepository: InterviewRepository,
     private val jobRepository: JobRepository,
-    private val activityRepository: ActivityRepository
+    private val activityRepository: ActivityRepository,
+    private val interviewtTagRepository: InterviewTagRepository
 ) {
-    fun execute(jobId: String, title: String, tags: List<String>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
+    fun execute(jobId: String, title: String, tags: List<TagName>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
         jobRepository.fetch(jobId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Job not found")
         val activity = Activity(
             name = title,
@@ -27,6 +31,7 @@ class AddInterviewUseCase(
             jobId = jobId
         )
         activityRepository.insert(activity)
+
         val interview = Interview(
             title = title,
             interviewDateTime = interviewDateTime,
@@ -36,5 +41,13 @@ class AddInterviewUseCase(
             activityId = activity.activityId
         )
         interviewRepository.insert(interview)
+
+        tags?.forEach {
+            val tag = InterviewTag(
+                interview.interviewId,
+                it
+            )
+            interviewtTagRepository.insert(tag)
+        }
     }
 }
