@@ -25,4 +25,4 @@ place:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG

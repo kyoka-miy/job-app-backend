@@ -22,11 +22,11 @@ class AddInterviewUseCase(
     private val activityRepository: ActivityRepository,
     private val interviewtTagRepository: InterviewTagRepository
 ) {
-    fun execute(jobId: String, title: String, tags: List<TagName>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
+    fun execute(jobId: String, title: String, tags: List<String>?, interviewDatetime: LocalDateTime, note: String?, completed: Boolean) {
         jobRepository.fetch(jobId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Job not found")
         val activity = Activity(
             name = title,
-            activityDateTime = interviewDateTime,
+            activityDateTime = interviewDatetime,
             deleted = false,
             jobId = jobId
         )
@@ -34,7 +34,7 @@ class AddInterviewUseCase(
 
         val interview = Interview(
             title = title,
-            interviewDateTime = interviewDateTime,
+            interviewDateTime = interviewDatetime,
             note = note,
             completed = completed,
             jobId = jobId,
@@ -45,7 +45,7 @@ class AddInterviewUseCase(
         tags?.forEach {
             val tag = InterviewTag(
                 interview.interviewId,
-                it
+                TagName.valueOf(it)
             )
             interviewtTagRepository.insert(tag)
         }
