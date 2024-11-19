@@ -12,7 +12,7 @@ class GetInterviewsUseCase(
     private val interviewRepository: InterviewRepository,
     private val jobRepository: JobRepository
 ) {
-    fun execute(jobId: String): List<Interview> {
+    fun execute(jobId: String): List<InterviewWithTagsDto> {
         jobRepository.fetch(jobId) ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Job not found")
         return interviewRepository.fetchByJobId(jobId)
     }

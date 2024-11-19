@@ -24,7 +24,7 @@ class InterviewController(
             jobId,
             request.title,
             request.tags,
-            request.interviewDatetime,
+            request.interviewDateTime,
             request.note,
             request.completed
         )
@@ -47,7 +47,7 @@ class InterviewController(
     @GetMapping("/jobs/{jobId}")
     fun getInterviews(
         @PathVariable("jobId") jobId: String
-    ): List<Interview> {
+    ): List<InterviewWithTagsDto> {
         return getInterviewsUseCase.execute(jobId)
     }
 
@@ -57,7 +57,7 @@ class InterviewController(
 data class AddOrUpdateInterviewRequest(
     val title: String,
     val tags: List<String>?,
-    val interviewDatetime: LocalDateTime,
+    val interviewDateTime: LocalDateTime,
     val note: String?,
     val completed: Boolean
 )
