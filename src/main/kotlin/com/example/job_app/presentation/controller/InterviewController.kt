@@ -1,6 +1,7 @@
 package com.example.job_app.presentation.controller
 
 import com.example.job_app.domain.interview.Interview
+import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.usecase.interview.*
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
@@ -35,14 +36,21 @@ class InterviewController(
         deleteInterviewUseCase.execute(interviewId)
     }
 
-//    @PutMapping("/{interviewId}")
-//    fun updateInterview(
-//        @PathVariable("interviewId") interviewId: String,
-//        @RequestBody @Validated
-//        request: AddOrUpdateInterviewRequest
-//    ) {
-//        updateInterviewUseCase.execute(interviewId, request.title, request.tags, request.interviewDateTime, request.note, request.completed)
-//    }
+    @PutMapping("/{interviewId}")
+    fun updateInterview(
+        @PathVariable("interviewId") interviewId: String,
+        @RequestBody @Validated
+        request: AddOrUpdateInterviewRequest
+    ) {
+        updateInterviewUseCase.execute(
+            interviewId,
+            request.title,
+            request.tags,
+            request.interviewDateTime,
+            request.note,
+            request.completed
+        )
+    }
 
     @GetMapping("/jobs/{jobId}")
     fun getInterviews(
@@ -56,7 +64,7 @@ class InterviewController(
 
 data class AddOrUpdateInterviewRequest(
     val title: String,
-    val tags: List<String>?,
+    val tags: List<TagName>?,
     val interviewDateTime: LocalDateTime,
     val note: String?,
     val completed: Boolean

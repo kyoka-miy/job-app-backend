@@ -2,6 +2,8 @@ package com.example.job_app.usecase.interview
 
 import com.example.job_app.domain.activity.ActivityRepository
 import com.example.job_app.domain.interview.InterviewRepository
+import com.example.job_app.domain.interviewTag.InterviewTag
+import com.example.job_app.domain.interviewTag.InterviewTagRepository
 import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.usecase.shared.UseCaseErrorCodes
 import com.example.job_app.usecase.shared.UseCaseException
@@ -13,6 +15,7 @@ import java.time.LocalDateTime
 @Transactional
 class UpdateInterviewUseCase(
     private val interviewRepository: InterviewRepository,
+    private val interviewTagRepository: InterviewTagRepository,
     private val activityRepository: ActivityRepository
 ) {
     fun execute(interviewId: String, title: String, tags: List<TagName>?, interviewDateTime: LocalDateTime, note: String?, completed: Boolean) {
@@ -23,6 +26,17 @@ class UpdateInterviewUseCase(
         activity.deleted = false
         activityRepository.update(activity)
 
+        if (!tags.isNullOrEmpty()) {
+            interviewTagRepository.deleteAll(interviewId)
+            tags.forEach {
+                interviewTagRepository.insert(
+                    InterviewTag(
+                        interviewId = interviewId,
+                        name = it
+                    )
+                )
+            }
+        }
         interview.title = title
         interview.interviewDateTime = interviewDateTime
         interview.note = note

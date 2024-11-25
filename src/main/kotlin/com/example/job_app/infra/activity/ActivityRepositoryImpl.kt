@@ -57,11 +57,9 @@ class ActivityRepositoryImpl(
 
     override fun update(activity: Activity) {
         jooq.update(Tables.ACTIVITIES)
-            .set(Tables.ACTIVITIES.ACTIVITY_ID, activity.activityId)
             .set(Tables.ACTIVITIES.NAME, activity.name)
             .set(Tables.ACTIVITIES.ACTIVITY_DATETIME, activity.activityDateTime)
             .set(Tables.ACTIVITIES.DELETED, activity.deleted)
-            .set(Tables.ACTIVITIES.JOB_ID, activity.jobId)
             .execute()
     }
 

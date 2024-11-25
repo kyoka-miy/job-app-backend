@@ -52,6 +52,7 @@ class InterviewRepositoryImpl(
             .set(Tables.INTERVIEWS.TITLE, interview.title)
             .set(Tables.INTERVIEWS.NOTE, interview.note)
             .set(Tables.INTERVIEWS.COMPLETED, interview.completed)
+            .where(Tables.INTERVIEWS.INTERVIEW_ID.eq(interview.interviewId))
             .execute()
     }
 
@@ -67,7 +68,7 @@ class InterviewRepositoryImpl(
         )
             .from(Tables.INTERVIEWS)
             .where(Tables.INTERVIEWS.JOB_ID.eq(jobId))
-            .orderBy(Tables.INTERVIEWS.INTERVIEW_DATETIME.desc())
+            .orderBy(Tables.INTERVIEWS.INTERVIEW_DATETIME)
 
         return query.fetch {
             InterviewWithTagsDto(
