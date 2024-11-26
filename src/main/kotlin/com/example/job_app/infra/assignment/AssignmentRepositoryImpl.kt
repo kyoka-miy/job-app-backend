@@ -5,7 +5,9 @@ import com.example.job_app.domain.assignment.AssignmentRepository
 import com.example.job_app.infra.jooq.Tables
 import com.example.job_app.infra.jooq.tables.records.AssignmentsRecord
 import org.jooq.DSLContext
+import org.springframework.stereotype.Component
 
+@Component
 class AssignmentRepositoryImpl(
     private val jooq: DSLContext
 ) : AssignmentRepository {
