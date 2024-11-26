@@ -64,7 +64,7 @@ class InterviewRepositoryImpl(
             Tables.INTERVIEWS.NOTE,
             Tables.INTERVIEWS.COMPLETED,
             Tables.INTERVIEWS.JOB_ID,
-            Tables.INTERVIEWS.ACTIVITY_ID,
+            Tables.INTERVIEWS.ACTIVITY_ID
         )
             .from(Tables.INTERVIEWS)
             .where(Tables.INTERVIEWS.JOB_ID.eq(jobId))
@@ -79,7 +79,7 @@ class InterviewRepositoryImpl(
                     note = it.get(Tables.INTERVIEWS.NOTE),
                     completed = it.get(Tables.INTERVIEWS.COMPLETED),
                     jobId = it.get(Tables.INTERVIEWS.JOB_ID),
-                    activityId = it.get(Tables.INTERVIEWS.ACTIVITY_ID),
+                    activityId = it.get(Tables.INTERVIEWS.ACTIVITY_ID)
                 ),
                 tags = getInterviewTags(it.get(Tables.INTERVIEWS.INTERVIEW_ID))
             )
