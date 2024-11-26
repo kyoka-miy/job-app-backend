@@ -5,9 +5,10 @@ import java.time.LocalDateTime
 
 data class Assignment(
     val assignmentId: String = IdGenerator.generate(),
-    val title: String,
-    val deadlineDatetime: LocalDateTime,
-    val note: String?,
-    val completed: Boolean,
-    val jobId: String
+    var title: String,
+    var deadlineDatetime: LocalDateTime,
+    var note: String?,
+    var completed: Boolean,
+    val jobId: String,
+    val activityId: String
 )
