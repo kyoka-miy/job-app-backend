@@ -60,6 +60,7 @@ class ActivityRepositoryImpl(
             .set(Tables.ACTIVITIES.NAME, activity.name)
             .set(Tables.ACTIVITIES.ACTIVITY_DATETIME, activity.activityDateTime)
             .set(Tables.ACTIVITIES.DELETED, activity.deleted)
+            .where(Tables.ACTIVITIES.ACTIVITY_ID.eq(activity.activityId))
             .execute()
     }
 

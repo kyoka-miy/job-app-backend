@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 data class Account(
     val accountId: String = IdGenerator.generate(),
     val registeredDatetime: LocalDateTime,
-    val email: String,
+    var email: String,
     val _password: String,
     var name: String,
     val role: Role

@@ -5,24 +5,18 @@ import com.example.job_app.usecase.activity.AddActivityUseCase
 import com.example.job_app.usecase.activity.DeleteActivityUseCase
 import com.example.job_app.usecase.activity.GetActivitiesUseCase
 import com.example.job_app.usecase.activity.UpdateActivityUseCase
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
 
 @RestController
-@RequestMapping("/activity")
+@RequestMapping("/activities")
 class ActivityController(
     private val getActivitiesUseCase: GetActivitiesUseCase,
     private val deleteActivityUseCase: DeleteActivityUseCase,
     private val updateActivityUseCase: UpdateActivityUseCase,
     private val addActivityUseCase: AddActivityUseCase
 ) {
-    @GetMapping("/{jobId}")
+    @GetMapping("/jobs/{jobId}")
     fun getActivities(@PathVariable("jobId") jobId: String): List<Activity> {
         return getActivitiesUseCase.execute(jobId)
     }
@@ -32,8 +26,11 @@ class ActivityController(
         deleteActivityUseCase.execute(activityId)
     }
 
-    @PostMapping("/{jobId}")
-    fun addActivity(@PathVariable("jobId") jobId: String, request: UpdateOrAddActivityRequest) {
+    @PostMapping("/jobs/{jobId}")
+    fun addActivity(
+        @PathVariable("jobId") jobId: String,
+        @RequestBody request: UpdateOrAddActivityRequest
+    ) {
         addActivityUseCase.execute(
             jobId,
             request.name,
@@ -42,7 +39,10 @@ class ActivityController(
     }
 
     @PutMapping("/{activityId}")
-    fun updateActivity(@PathVariable("activityId") activityId: String, request: UpdateOrAddActivityRequest) {
+    fun updateActivity(
+        @PathVariable("activityId") activityId: String,
+        @RequestBody request: UpdateOrAddActivityRequest
+    ) {
         updateActivityUseCase.execute(
             activityId,
             request.name,

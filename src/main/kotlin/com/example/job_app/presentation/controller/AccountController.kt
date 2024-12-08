@@ -32,7 +32,11 @@ class AccountController(
         @RequestBody @Validated
         request: AccountUpdateRequest
     ) {
-        updateAccountNameUseCase.execute(accountSessionProvider.getAccountSession(), request.name)
+        updateAccountNameUseCase.execute(
+            accountSessionProvider.getAccountSession(),
+            request.name,
+            request.email
+        )
     }
 
     @DeleteMapping
@@ -42,6 +46,6 @@ class AccountController(
 }
 
 data class AccountUpdateRequest(
-    @field:NotBlank(message = "Name cannot be empty")
-    val name: String
+    val name: String,
+    val email: String
 )

@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component
 class UpdateAccountNameUseCase(
     private val accountRepository: AccountRepository
 ) {
-    fun execute(accountId: String, name: String) {
+    fun execute(accountId: String, name: String, email: String) {
         val account = accountRepository.fetch(accountId)
             ?: throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Account not found")
         account.name = name
+        account.email = email
         accountRepository.update(account)
     }
 }

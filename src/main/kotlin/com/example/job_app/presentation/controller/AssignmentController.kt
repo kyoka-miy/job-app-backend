@@ -33,7 +33,7 @@ class AssignmentController(
         addAssignmentUseCase.execute(
             jobId,
             request.title,
-            request.deadlineDateTime,
+            request.deadlineDatetime,
             request.note,
             request.completed
         )
@@ -53,7 +53,7 @@ class AssignmentController(
         updateAssignmentUseCase.execute(
             assignmentId,
             request.title,
-            request.deadlineDateTime,
+            request.deadlineDatetime,
             request.note,
             request.completed
         )
@@ -62,7 +62,7 @@ class AssignmentController(
 
 data class AddOrUpdateAssignmentRequest(
     val title: String,
-    val deadlineDateTime: LocalDateTime,
+    val deadlineDatetime: LocalDateTime,
     val note: String?,
     val completed: Boolean
 )
