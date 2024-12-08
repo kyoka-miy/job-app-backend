@@ -16,6 +16,7 @@ class BoardRepositoryImpl(
     override fun fetchByAccountId(accountId: String): List<Board> {
         return jooq.selectFrom(Tables.BOARDS)
             .where(Tables.BOARDS.ACCOUNT_ID.eq(accountId))
+            .and(Tables.BOARDS.DELETED.isFalse)
             .orderBy(Tables.BOARDS.CREATED_DATETIME.desc())
             .fetch()
             .mapNotNull {
@@ -26,6 +27,7 @@ class BoardRepositoryImpl(
     override fun fetch(boardId: String): Board? {
         return jooq.selectFrom(Tables.BOARDS)
             .where(Tables.BOARDS.BOARD_ID.eq(boardId))
+            .and(Tables.BOARDS.DELETED.isFalse)
             .fetchOne()
             ?.let {
                 recordToEntity(it)
@@ -39,6 +41,7 @@ class BoardRepositoryImpl(
                 .set(Tables.BOARDS.NAME, board.name)
                 .set(Tables.BOARDS.CREATED_DATETIME, board.createdDatetime)
                 .set(Tables.BOARDS.ACCOUNT_ID, board.accountId)
+                .set(Tables.BOARDS.DELETED, false)
                 .execute()
         } catch (e: Exception) {
             throw DomainException(DomainErrorCodes.AccountRegister.duplicate, "Duplicated key")
@@ -56,7 +59,8 @@ class BoardRepositoryImpl(
     }
 
     override fun delete(boardId: String) {
-        jooq.deleteFrom(Tables.BOARDS)
+        jooq.update(Tables.BOARDS)
+            .set(Tables.BOARDS.DELETED, true)
             .where(Tables.BOARDS.BOARD_ID.eq(boardId))
             .execute()
     }
