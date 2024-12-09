@@ -1,5 +1,7 @@
 package com.example.job_app.infra.Job
 
+import com.example.job_app.domain.interview.Interview
+import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.domain.job.Job
 import com.example.job_app.domain.job.JobRepository
 import com.example.job_app.domain.job.Status
@@ -8,7 +10,9 @@ import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
 import com.example.job_app.infra.jooq.Tables
 import com.example.job_app.infra.jooq.tables.records.JobsRecord
+import com.example.job_app.usecase.job.JobWithInterviewDto
 import org.jooq.DSLContext
+import org.jooq.Record
 import org.springframework.stereotype.Component
 
 @Component
@@ -82,6 +86,41 @@ class JobRepositoryImpl(
             }
     }
 
+    override fun fetchByBoardIdWithInterview(boardId: String): List<JobWithInterviewDto> {
+        return jooq.select(
+            Tables.JOBS.JOB_ID,
+            Tables.JOBS.JOB_TITLE,
+            Tables.JOBS.COMPANY_NAME,
+            Tables.JOBS.URL,
+            Tables.JOBS.LOCATION,
+            Tables.JOBS.SALARY,
+            Tables.JOBS.WORK_STYLE,
+            Tables.JOBS.STATUS,
+            Tables.JOBS.APPLIED_DATE,
+            Tables.JOBS.JOB_BOARD,
+            Tables.JOBS.NOTE,
+            Tables.JOBS.BOARD_ID,
+            Tables.JOBS.ADDED_DATETIME,
+            Tables.INTERVIEWS.INTERVIEW_ID,
+            Tables.INTERVIEWS.TITLE,
+            Tables.INTERVIEWS.INTERVIEW_DATETIME,
+            Tables.INTERVIEWS.NOTE,
+            Tables.INTERVIEWS.COMPLETED,
+            Tables.INTERVIEWS.JOB_ID,
+            Tables.INTERVIEWS.ACTIVITY_ID
+        )
+            .from(Tables.JOBS)
+            .innerJoin(Tables.INTERVIEWS)
+            .on(Tables.JOBS.JOB_ID.eq(Tables.INTERVIEWS.JOB_ID))
+            .where(Tables.JOBS.BOARD_ID.eq(boardId))
+            .and(Tables.INTERVIEWS.COMPLETED.isFalse)
+            .orderBy(Tables.INTERVIEWS.INTERVIEW_DATETIME.asc())
+            .fetch()
+            .mapNotNull {
+                recordToJobWithInterviewDto(it)
+            }
+    }
+
     override fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job> {
         return jooq.selectFrom(Tables.JOBS)
             .where(Tables.JOBS.BOARD_ID.eq(boardId))
@@ -110,5 +149,46 @@ class JobRepositoryImpl(
             addedDatetime = record.addedDatetime,
             boardId = record.boardId
         )
+    }
+
+    private fun recordToJobWithInterviewDto(record: Record): JobWithInterviewDto {
+        val jobRecord = record.into(Tables.JOBS)
+        val interviewRecord = record.into(Tables.INTERVIEWS)
+        return JobWithInterviewDto(
+            job = Job(
+                jobId = jobRecord.jobId,
+                jobTitle = jobRecord.jobTitle,
+                companyName = jobRecord.companyName,
+                url = jobRecord.url,
+                location = jobRecord.location,
+                placeId = jobRecord.placeId,
+                salary = jobRecord.salary,
+                workStyle = jobRecord.workStyle?.let { WorkStyle.valueOf(it) },
+                status = Status.valueOf(jobRecord.status),
+                appliedDate = jobRecord.appliedDate,
+                jobBoard = jobRecord.jobBoard,
+                note = jobRecord.note,
+                addedDatetime = jobRecord.addedDatetime,
+                boardId = jobRecord.boardId
+            ),
+            interview = Interview(
+                interviewId = interviewRecord.interviewId,
+                title = interviewRecord.title,
+                interviewDateTime = interviewRecord.interviewDatetime,
+                note = interviewRecord.note,
+                completed = interviewRecord.completed,
+                jobId = interviewRecord.jobId,
+                activityId = interviewRecord.activityId
+            ),
+            tags = getInterviewTags(interviewRecord.interviewId)
+        )
+    }
+
+    private fun getInterviewTags(interviewId: String): List<TagName> {
+        return jooq.select(Tables.INTERVIEW_TAGS.NAME)
+            .from(Tables.INTERVIEW_TAGS)
+            .where(Tables.INTERVIEW_TAGS.INTERVIEW_ID.eq(interviewId))
+            .fetch(Tables.INTERVIEW_TAGS.NAME)
+            .mapNotNull { TagName.valueOf(it) }
     }
 }

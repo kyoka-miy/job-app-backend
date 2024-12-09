@@ -17,8 +17,8 @@ class JobController(
     private val addJobUseCase: AddJobUseCase,
     private val updateJobUseCase: UpdateJobUseCase,
     private val deleteJobUseCase: DeleteJobUseCase,
-    private val getJobsUseCase: GetJobsUseCase,
     private val getJobsByStatusUseCase: GetJobsByStatusUseCase,
+    private val getJobsWithInterviewsUseCase: GetJobsWithInterviewsUseCase,
     private val requestHeaderContext: RequestHeaderContext
 ) {
     @PostMapping
@@ -71,11 +71,6 @@ class JobController(
         deleteJobUseCase.execute(jobId)
     }
 
-//    @GetMapping("/boards/{boardId}/jobs")
-//    fun getJobs(@PathVariable("boardId") boardId: String): Map<Status, List<Job>> {
-//        return getJobsUseCase.execute(boardId)
-//    }
-
     @GetMapping
     fun getJobsByStatus(
         @RequestParam status: Status
@@ -83,6 +78,13 @@ class JobController(
         return getJobsByStatusUseCase.execute(
             requestHeaderContext.getBoardId(),
             status
+        )
+    }
+
+    @GetMapping("/interviews")
+    fun getJobsWithInterviews(): List<JobWithInterviewDto> {
+        return getJobsWithInterviewsUseCase.execute(
+            requestHeaderContext.getBoardId()
         )
     }
 }
