@@ -1,5 +1,6 @@
 package com.example.job_app.domain.job
 
+import com.example.job_app.usecase.job.JobWithAssignmentDto
 import com.example.job_app.usecase.job.JobWithInterviewDto
 
 interface JobRepository {
@@ -9,5 +10,6 @@ interface JobRepository {
     fun delete(jobId: String)
     fun fetchByBoardId(boardId: String): List<Job>
     fun fetchByBoardIdWithInterview(boardId: String): List<JobWithInterviewDto>
+    fun fetchByBoardIdWithAssignment(boardId: String): List<JobWithAssignmentDto>
     fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job>
 }

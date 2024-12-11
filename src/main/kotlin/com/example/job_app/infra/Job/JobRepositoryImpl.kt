@@ -1,5 +1,6 @@
 package com.example.job_app.infra.Job
 
+import com.example.job_app.domain.assignment.Assignment
 import com.example.job_app.domain.interview.Interview
 import com.example.job_app.domain.interviewTag.TagName
 import com.example.job_app.domain.job.Job
@@ -10,6 +11,7 @@ import com.example.job_app.domain.shared.DomainErrorCodes
 import com.example.job_app.domain.shared.DomainException
 import com.example.job_app.infra.jooq.Tables
 import com.example.job_app.infra.jooq.tables.records.JobsRecord
+import com.example.job_app.usecase.job.JobWithAssignmentDto
 import com.example.job_app.usecase.job.JobWithInterviewDto
 import org.jooq.DSLContext
 import org.jooq.Record
@@ -121,6 +123,41 @@ class JobRepositoryImpl(
             }
     }
 
+    override fun fetchByBoardIdWithAssignment(boardId: String): List<JobWithAssignmentDto> {
+        return jooq.select(
+            Tables.JOBS.JOB_ID,
+            Tables.JOBS.JOB_TITLE,
+            Tables.JOBS.COMPANY_NAME,
+            Tables.JOBS.URL,
+            Tables.JOBS.LOCATION,
+            Tables.JOBS.SALARY,
+            Tables.JOBS.WORK_STYLE,
+            Tables.JOBS.STATUS,
+            Tables.JOBS.APPLIED_DATE,
+            Tables.JOBS.JOB_BOARD,
+            Tables.JOBS.NOTE,
+            Tables.JOBS.BOARD_ID,
+            Tables.JOBS.ADDED_DATETIME,
+            Tables.ASSIGNMENTS.ASSIGNMENT_ID,
+            Tables.ASSIGNMENTS.TITLE,
+            Tables.ASSIGNMENTS.DEADLINE_DATETIME,
+            Tables.ASSIGNMENTS.NOTE,
+            Tables.ASSIGNMENTS.COMPLETED,
+            Tables.ASSIGNMENTS.JOB_ID,
+            Tables.ASSIGNMENTS.ACTIVITY_ID
+        )
+            .from(Tables.JOBS)
+            .innerJoin(Tables.ASSIGNMENTS)
+            .on(Tables.JOBS.JOB_ID.eq(Tables.ASSIGNMENTS.JOB_ID))
+            .where(Tables.JOBS.BOARD_ID.eq(boardId))
+            .and(Tables.ASSIGNMENTS.COMPLETED.isFalse)
+            .orderBy(Tables.ASSIGNMENTS.DEADLINE_DATETIME.asc())
+            .fetch()
+            .mapNotNull {
+                recordToJobWithAssignmentDto(it)
+            }
+    }
+
     override fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job> {
         return jooq.selectFrom(Tables.JOBS)
             .where(Tables.JOBS.BOARD_ID.eq(boardId))
@@ -190,5 +227,37 @@ class JobRepositoryImpl(
             .where(Tables.INTERVIEW_TAGS.INTERVIEW_ID.eq(interviewId))
             .fetch(Tables.INTERVIEW_TAGS.NAME)
             .mapNotNull { TagName.valueOf(it) }
+    }
+
+    private fun recordToJobWithAssignmentDto(record: Record): JobWithAssignmentDto {
+        val jobRecord = record.into(Tables.JOBS)
+        val assignmentRecord = record.into(Tables.ASSIGNMENTS)
+        return JobWithAssignmentDto(
+            job = Job(
+                jobId = jobRecord.jobId,
+                jobTitle = jobRecord.jobTitle,
+                companyName = jobRecord.companyName,
+                url = jobRecord.url,
+                location = jobRecord.location,
+                placeId = jobRecord.placeId,
+                salary = jobRecord.salary,
+                workStyle = jobRecord.workStyle?.let { WorkStyle.valueOf(it) },
+                status = Status.valueOf(jobRecord.status),
+                appliedDate = jobRecord.appliedDate,
+                jobBoard = jobRecord.jobBoard,
+                note = jobRecord.note,
+                addedDatetime = jobRecord.addedDatetime,
+                boardId = jobRecord.boardId
+            ),
+            assignment = Assignment(
+                assignmentId = assignmentRecord.assignmentId,
+                title = assignmentRecord.title,
+                deadlineDatetime = assignmentRecord.deadlineDatetime,
+                note = assignmentRecord.note,
+                completed = assignmentRecord.completed,
+                jobId = assignmentRecord.jobId,
+                activityId = assignmentRecord.activityId
+            )
+        )
     }
 }

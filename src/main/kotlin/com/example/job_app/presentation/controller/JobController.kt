@@ -19,6 +19,7 @@ class JobController(
     private val deleteJobUseCase: DeleteJobUseCase,
     private val getJobsByStatusUseCase: GetJobsByStatusUseCase,
     private val getJobsWithInterviewsUseCase: GetJobsWithInterviewsUseCase,
+    private val getJobsWithAssignmentsUseCase: GetJobsWithAssignmentsUseCase,
     private val requestHeaderContext: RequestHeaderContext
 ) {
     @PostMapping
@@ -84,6 +85,13 @@ class JobController(
     @GetMapping("/interviews")
     fun getJobsWithInterviews(): List<JobWithInterviewDto> {
         return getJobsWithInterviewsUseCase.execute(
+            requestHeaderContext.getBoardId()
+        )
+    }
+
+    @GetMapping("/assignments")
+    fun getJobsWithAssignments(): List<JobWithAssignmentDto> {
+        return getJobsWithAssignmentsUseCase.execute(
             requestHeaderContext.getBoardId()
         )
     }
