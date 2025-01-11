@@ -15,6 +15,7 @@ import com.example.job_app.usecase.job.JobWithAssignmentDto
 import com.example.job_app.usecase.job.JobWithInterviewDto
 import org.jooq.DSLContext
 import org.jooq.Record
+import org.jooq.impl.DSL
 import org.springframework.stereotype.Component
 
 @Component
@@ -158,10 +159,20 @@ class JobRepositoryImpl(
             }
     }
 
-    override fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job> {
+    override fun fetchByBoardIdAndStatusAndText(
+        boardId: String,
+        status: Status,
+        text: String?
+    ): List<Job> {
         return jooq.selectFrom(Tables.JOBS)
             .where(Tables.JOBS.BOARD_ID.eq(boardId))
             .and(Tables.JOBS.STATUS.eq(status.name))
+            .and(
+                text?.let {
+                    (Tables.JOBS.JOB_TITLE.like("%$it%"))
+                        .or(Tables.JOBS.COMPANY_NAME.like("%$it%"))
+                } ?: DSL.noCondition()
+            )
             .orderBy(Tables.JOBS.ADDED_DATETIME.desc())
             .fetch()
             .mapNotNull {

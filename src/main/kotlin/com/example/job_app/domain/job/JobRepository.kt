@@ -11,5 +11,5 @@ interface JobRepository {
     fun fetchByBoardId(boardId: String): List<Job>
     fun fetchByBoardIdWithInterview(boardId: String): List<JobWithInterviewDto>
     fun fetchByBoardIdWithAssignment(boardId: String): List<JobWithAssignmentDto>
-    fun fetchByBoardIdAndStatus(boardId: String, status: Status): List<Job>
+    fun fetchByBoardIdAndStatusAndText(boardId: String, status: Status, text: String?): List<Job>
 }

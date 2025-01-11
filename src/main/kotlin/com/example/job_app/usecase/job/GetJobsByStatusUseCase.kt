@@ -13,10 +13,10 @@ class GetJobsByStatusUseCase(
     private val jobRepository: JobRepository,
     private val boardRepository: BoardRepository
 ) {
-    fun execute(boardId: String?, status: Status): List<Job> {
+    fun execute(boardId: String?, status: Status, text: String?): List<Job> {
         if (boardId == null || boardRepository.fetch(boardId) == null) {
             throw UseCaseException(UseCaseErrorCodes.Common.idNotFound, "Board id not found")
         }
-        return jobRepository.fetchByBoardIdAndStatus(boardId, status)
+        return jobRepository.fetchByBoardIdAndStatusAndText(boardId, status, text)
     }
 }

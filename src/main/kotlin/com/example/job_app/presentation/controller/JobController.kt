@@ -74,11 +74,13 @@ class JobController(
 
     @GetMapping
     fun getJobsByStatus(
-        @RequestParam status: Status
+        @RequestParam status: Status,
+        @RequestParam text: String?
     ): List<Job> {
         return getJobsByStatusUseCase.execute(
             requestHeaderContext.getBoardId(),
-            status
+            status,
+            text
         )
     }
 
