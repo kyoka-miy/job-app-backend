@@ -1,5 +1,7 @@
 package com.example.job_app.usecase.job
 
+import com.example.job_app.domain.activity.Activity
+import com.example.job_app.domain.activity.ActivityRepository
 import com.example.job_app.domain.board.BoardRepository
 import com.example.job_app.domain.job.Job
 import com.example.job_app.domain.job.JobRepository
@@ -14,7 +16,8 @@ import java.time.LocalDateTime
 @Component
 class AddJobUseCase(
     private val jobRepository: JobRepository,
-    private val boardRepository: BoardRepository
+    private val boardRepository: BoardRepository,
+    private val activityRepository: ActivityRepository
 ) {
     fun execute(
         boardId: String?,
@@ -49,5 +52,14 @@ class AddJobUseCase(
             addedDatetime = LocalDateTime.now()
         )
         jobRepository.insert(job)
+        if (appliedDate != null) {
+            val activity = Activity(
+                name = "Applied",
+                activityDateTime = appliedDate.atStartOfDay(),
+                deleted = false,
+                jobId = job.jobId
+            )
+            activityRepository.insert(activity)
+        }
     }
 }

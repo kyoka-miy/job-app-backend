@@ -12,8 +12,10 @@ class WebConfig {
         return object : WebMvcConfigurer {
             override fun addCorsMappings(registry: CorsRegistry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:3000")
-                    .allowedOrigins("https://job-app-frontend-nine.vercel.app")
+                    .allowedOrigins(
+                        "http://localhost:3000",
+                        "https://job-app-frontend-nine.vercel.app"
+                    )
                     .allowedMethods("GET", "POST", "PUT", "DELETE")
             }
         }

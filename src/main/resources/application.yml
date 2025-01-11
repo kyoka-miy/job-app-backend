@@ -22,7 +22,6 @@ server:
 place:
   url: https://maps.googleapis.com/maps/api/place/autocomplete/json
   apiKey: ${PLACE_API_KEY}
-
 logging:
   level:
     root: INFO
