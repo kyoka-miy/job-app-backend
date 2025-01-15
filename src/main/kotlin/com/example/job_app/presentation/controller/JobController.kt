@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
+import java.math.BigDecimal
 import java.time.LocalDate
 
 @RestController
@@ -74,7 +75,7 @@ class JobController(
 
     @GetMapping
     fun getJobsByStatus(
-        @RequestParam status: Status,
+        @RequestParam status: Status?,
         @RequestParam text: String?
     ): List<Job> {
         return getJobsByStatusUseCase.execute(

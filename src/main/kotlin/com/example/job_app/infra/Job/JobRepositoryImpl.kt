@@ -31,6 +31,8 @@ class JobRepositoryImpl(
                 .set(Tables.JOBS.URL, job.url)
                 .set(Tables.JOBS.LOCATION, job.location)
                 .set(Tables.JOBS.PLACE_ID, job.placeId)
+                .set(Tables.JOBS.LATITUDE, job.latitude)
+                .set(Tables.JOBS.LONGITUDE, job.longitude)
                 .set(Tables.JOBS.SALARY, job.salary)
                 .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
                 .set(Tables.JOBS.STATUS, job.status.name)
@@ -62,6 +64,8 @@ class JobRepositoryImpl(
             .set(Tables.JOBS.URL, job.url)
             .set(Tables.JOBS.LOCATION, job.location)
             .set(Tables.JOBS.PLACE_ID, job.placeId)
+            .set(Tables.JOBS.LATITUDE, job.latitude)
+            .set(Tables.JOBS.LONGITUDE, job.longitude)
             .set(Tables.JOBS.SALARY, job.salary)
             .set(Tables.JOBS.WORK_STYLE, job.workStyle?.name)
             .set(Tables.JOBS.STATUS, job.status.name)
@@ -161,12 +165,16 @@ class JobRepositoryImpl(
 
     override fun fetchByBoardIdAndStatusAndText(
         boardId: String,
-        status: Status,
+        status: Status?,
         text: String?
     ): List<Job> {
         return jooq.selectFrom(Tables.JOBS)
             .where(Tables.JOBS.BOARD_ID.eq(boardId))
-            .and(Tables.JOBS.STATUS.eq(status.name))
+            .and(
+                status?.let {
+                    Tables.JOBS.STATUS.eq(status.name)
+                } ?: DSL.noCondition()
+            )
             .and(
                 text?.let {
                     (Tables.JOBS.JOB_TITLE.like("%$it%"))
@@ -188,6 +196,8 @@ class JobRepositoryImpl(
             url = record.url,
             location = record.location,
             placeId = record.placeId,
+            latitude = record.latitude,
+            longitude = record.longitude,
             salary = record.salary,
             workStyle = record.workStyle?.let { WorkStyle.valueOf(it) },
             status = Status.valueOf(record.status),
@@ -210,6 +220,8 @@ class JobRepositoryImpl(
                 url = jobRecord.url,
                 location = jobRecord.location,
                 placeId = jobRecord.placeId,
+                latitude = jobRecord.latitude,
+                longitude = jobRecord.longitude,
                 salary = jobRecord.salary,
                 workStyle = jobRecord.workStyle?.let { WorkStyle.valueOf(it) },
                 status = Status.valueOf(jobRecord.status),
@@ -251,6 +263,8 @@ class JobRepositoryImpl(
                 url = jobRecord.url,
                 location = jobRecord.location,
                 placeId = jobRecord.placeId,
+                latitude = jobRecord.latitude,
+                longitude = jobRecord.longitude,
                 salary = jobRecord.salary,
                 workStyle = jobRecord.workStyle?.let { WorkStyle.valueOf(it) },
                 status = Status.valueOf(jobRecord.status),

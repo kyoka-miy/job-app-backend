@@ -16,7 +16,7 @@ class GetPlaceSuggestionsUseCase(
     private val restTemplate: RestTemplate
 ) {
     fun execute(input: String): List<PlaceSuggestionDto> {
-        val requestUrl = "${placeProperties.url}?input=$input&key=${placeProperties.apiKey}&type=(cities)"
+        val requestUrl = "${placeProperties.url}/autocomplete/json?input=$input&key=${placeProperties.apiKey}&type=(cities)"
         try {
             val response: ResponseEntity<Map<String, Any>> = restTemplate.exchange(
                 requestUrl,

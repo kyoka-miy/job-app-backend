@@ -1,6 +1,7 @@
 package com.example.job_app.domain.job
 
 import com.example.job_app.domain.shared.IdGenerator
+import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -11,6 +12,8 @@ data class Job(
     var url: String?,
     var location: String?,
     var placeId: String?,
+    var latitude: BigDecimal?,
+    var longitude: BigDecimal?,
     var salary: String?,
     var workStyle: WorkStyle?,
     var status: Status,
